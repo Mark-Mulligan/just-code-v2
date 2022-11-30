@@ -1,7 +1,6 @@
 // Next
 import { GetServerSideProps } from "next";
 import { NextPage } from "next";
-import Link from "next/link";
 
 // Supabase
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -23,8 +22,6 @@ interface IProps {
 }
 
 const Problems: NextPage<IProps> = ({ codingChallengeOverviews }) => {
-  console.log(codingChallengeOverviews);
-
   return (
     <div className="container mx-auto pt-20">
       <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
