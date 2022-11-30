@@ -29,7 +29,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (session) {
       if (typeof window !== "undefined") {
-        router.push("/problems");
+        router.push("/coding-challenges");
       }
     }
   }, [session]);
@@ -38,7 +38,8 @@ const Home: NextPage = () => {
     <div className="container mx-auto">
       {!session ? (
         <div className="card mx-auto mt-16 max-w-lg bg-base-300 px-10 py-20 shadow-xl">
-          <h1 className="mb-8 text-center text-5xl font-bold">Just Code</h1>
+          <h1 className="mb-4 text-center text-5xl font-bold">Just Code</h1>
+          <div className="divider" />
           <button onClick={signInWithGithub} className="btn-block btn gap-2">
             <BsGithub size={20} />
             Sign In With Github
