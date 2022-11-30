@@ -5,32 +5,42 @@ import Link from "next/link";
 
 // Supabase
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { Session, User } from "@supabase/auth-helpers-nextjs";
 
-const Problems: NextPage = () => {
+// Coding Challenge Data
+import { codingChallengesData } from "../../../data/codingChallengeData";
+
+// Components
+import CodingChallengeCard from "../../components/CodingChallengeCard";
+
+// Custom Types
+import { AllChallengesOverviewData } from "../../../types/customTypes";
+
+interface IProps {
+  codingChallengeOverviews: AllChallengesOverviewData;
+  initialSession: Session;
+  user: User;
+}
+
+const Problems: NextPage<IProps> = ({ codingChallengeOverviews }) => {
+  console.log(codingChallengeOverviews);
+
   return (
     <div className="container mx-auto pt-20">
-      <h1 className="mb-2 text-center text-3xl font-bold">Coding Exercises</h1>
+      <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
       <h6 className="mb-4 text-center">3/35 Completed</h6>
       <ul>
-        <li className="card mx-auto mt-16 bg-base-300 shadow-xl">
-          <div className="card-body">
-            <h4 className="space-between card-title flex items-center justify-between">
-              <span>Sum Two Integers</span>
-              <div className="badge-outline badge">Not Completed</div>
-            </h4>
-            <p className="mb-3 font-extralight">
-              Create a function that returns the sum of two integers.
-            </p>
-            <div className="card-actions">
-              <Link
-                className="btn-primary btn"
-                href="/coding-challenges/sum-two-ints"
-              >
-                Start Challenge
-              </Link>
-            </div>
-          </div>
-        </li>
+        {Object.entries(codingChallengeOverviews).map(([key, value]) => {
+          return (
+            <CodingChallengeCard
+              key={key}
+              name={value.title}
+              description={value.description}
+              challengeKey={key}
+              completed={false}
+            />
+          );
+        })}
       </ul>
     </div>
   );
@@ -56,6 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       initialSession: session,
       user: session.user,
+      codingChallengeOverviews: codingChallengesData,
     },
   };
 };
