@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["daisyui", "extralight", "nextjs", "supabase", "tailwindcss"]
+  "cSpell.words": [
+    "daisyui",
+    "extralight",
+    "nextjs",
+    "supabase",
+    "tailwindcss",
+    "uuidv"
+  ]
 }
