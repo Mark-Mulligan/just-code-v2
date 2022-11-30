@@ -1,6 +1,6 @@
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
 
-export type CodingChallengeOverview = {
+export type CodingChallengeData = {
   title: string;
   description: string;
   instructions: string;
@@ -10,10 +10,6 @@ export type CodingChallengeOverview = {
   problemExplanation: string;
   hints: string[];
   solutionCode: string;
-};
-
-export type AllChallengesOverviewData = {
-  [key: string]: CodingChallengeOverview;
 };
 
 export type TestResult = {
@@ -42,6 +38,6 @@ export type CodingExerciseStaticPath = {
   };
 };
 
-export interface CodingChallengeData {
-  [key: string]: CodingChallengeOverview;
+export interface AllCodingChallengesData {
+  [key: string]: CodingChallengeData;
 }
