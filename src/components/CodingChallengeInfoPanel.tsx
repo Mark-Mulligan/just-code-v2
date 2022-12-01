@@ -11,6 +11,9 @@ import axios from "axios";
 // Resizable
 import { Resizable } from "re-resizable";
 
+// Icons
+import { BsFillCheckCircleFill } from "react-icons/bs";
+
 // Components
 import TestCriteriaList from "./TestCriteriaList";
 import TestResultsList from "./TestResultsList";
@@ -65,6 +68,7 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       .catch((err) => {
         if (err.response.status === 400) {
           setErrorMessage(err.response.data.message);
+          setTestResults([]);
         } else {
           console.log(err);
           setErrorMessage(
@@ -96,6 +100,30 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
           <div>
             <p className="text-center">Running Tests</p>
             <progress className="progress progress-info h-1.5 w-56" />
+          </div>
+        </div>
+      )}
+
+      {showModal && (
+        <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <div>
+            <BsFillCheckCircleFill
+              size={50}
+              color="white"
+              className="m-auto mb-4"
+            />
+            <h2 className="text-bold mb-8 text-center text-3xl text-white">
+              All Tests Passed!
+            </h2>
+            <button
+              className="btn-outline btn mr-4"
+              onClick={() => setShowModal(false)}
+            >
+              Stay Here
+            </button>
+            <Link href="/coding-challenges" className="btn-primary btn">
+              More Challenges
+            </Link>
           </div>
         </div>
       )}
