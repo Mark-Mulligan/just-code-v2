@@ -34,12 +34,15 @@ const CodingExercise: NextPage<IProps> = ({ codingChallengeData }) => {
   );
 
   return (
-    <div className="flex h-screen">
+    <div className="mt-[64px] flex h-[calc(100vh-4rem)]">
       <CodingChallengeInfoPanel
         userCode={userCode}
         codingChallengeData={codingChallengeData}
       />
-      <div className="w-full pt-[4rem]" style={{ background: "#282c34" }}>
+      <div
+        className="w-full overflow-auto pt-4"
+        style={{ background: "#282c34" }}
+      >
         <CodeMirror
           theme={"dark"}
           value={userCode}

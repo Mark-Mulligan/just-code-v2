@@ -78,7 +78,7 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
 
   return (
     <Resizable
-      className="relative z-10 overflow-auto border-r-2 border-base-content px-4 pt-20 pb-6"
+      className="relative z-10 overflow-auto border-r-2 border-base-content px-4 pt-4 pb-6"
       enable={{
         top: false,
         right: true,
