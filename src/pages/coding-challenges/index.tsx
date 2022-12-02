@@ -13,15 +13,22 @@ import { codingChallengesData } from "../../../data/codingChallengeData";
 import CodingChallengeCard from "../../components/CodingChallengeCard";
 
 // Custom Types
-import { AllCodingChallengesData } from "../../../types/customTypes";
+import {
+  AllCodingChallengesData,
+  CodingChallengeData,
+} from "../../../types/customTypes";
 
 interface IProps {
   codingChallengeOverviews: AllCodingChallengesData;
+  completedChallenges: string[];
   initialSession: Session;
   user: User;
 }
 
-const Problems: NextPage<IProps> = ({ codingChallengeOverviews }) => {
+const Problems: NextPage<IProps> = ({
+  codingChallengeOverviews,
+  completedChallenges,
+}) => {
   return (
     <div className="container mx-auto pt-20">
       <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
@@ -34,7 +41,7 @@ const Problems: NextPage<IProps> = ({ codingChallengeOverviews }) => {
               name={value.title}
               description={value.description}
               challengeKey={key}
-              completed={false}
+              completed={completedChallenges.includes(key)}
             />
           );
         })}
@@ -59,11 +66,26 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
 
+  const completedChallenges: string[] = [];
+  const { data, error, status } = await supabase
+    .from("completed_challenges")
+    .select("*")
+    .eq("user_id", session.user.id);
+
+  if (data && status === 200) {
+    for (let i = 0; i < data.length; i++) {
+      if (!completedChallenges.includes(data[i]["problem_key"])) {
+        completedChallenges.push(data[i]["problem_key"]);
+      }
+    }
+  }
+
   return {
     props: {
       initialSession: session,
       user: session.user,
       codingChallengeOverviews: codingChallengesData,
+      completedChallenges,
     },
   };
 };

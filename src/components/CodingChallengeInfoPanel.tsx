@@ -44,7 +44,6 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
 
   const [testResults, setTestResults] = useState<TestResult[]>([]);
   const [numTestsPassed, setNumTestsPassed] = useState(0);
-  const [overallResult, setOverallResult] = useState("");
   const [isFetchingData, setIsFetchingData] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -65,17 +64,16 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       });
       setTestResults(data.testResults);
       setNumTestsPassed(data.numTestsPassed);
-      setOverallResult(data.overallResult);
       console.log(data);
 
       if (data.overallResult === "passed" && typeof problemKey === "string") {
-        const { data, error, status } = await supabase
+        const { error, status } = await supabase
           .from("completed_challenges")
-          .insert({ problem_key: problemKey, user_id: user.id });
-
-        console.log("data", data);
-        console.log("error", error);
-        console.log("status", status);
+          .insert({
+            problem_key: problemKey,
+            user_id: user.id,
+            solution_code: userCode,
+          });
 
         setShowModal(true);
       }
