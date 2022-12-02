@@ -29,7 +29,10 @@ const Problems: NextPage<IProps> = ({
   return (
     <div className="container mx-auto pt-20">
       <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
-      <h6 className="mb-4 text-center">3/35 Completed</h6>
+      <h6 className="mb-4 text-center">
+        {completedChallenges.length}/
+        {Object.keys(codingChallengeOverviews).length} Completed
+      </h6>
       <ul>
         {Object.entries(codingChallengeOverviews).map(([key, value]) => {
           return (
