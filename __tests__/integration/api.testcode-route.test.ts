@@ -107,7 +107,7 @@ describe.each(Object.keys(codingChallengesData))(
         method: "POST",
         headers: { "content-type": "application/json" },
         query: { testname: dataKey },
-        body: { userCode: `askeil/` },
+        body: { userCode: `improperCode/` },
       });
 
       await apiRoute(req, res);

@@ -49,6 +49,7 @@ const data: CodingChallengeData = {
   description: "Create a function that returns the sum of two integers.",
   instructions:
     "Create a function that takes in two arguments (num1 & num2 that will both be integers) and returns a number that is the sum of the two integers provided.",
+  difficulty: 1,
   testScriptCode: createTestScriptString(sumTwoIntsTests),
   startingCode:
     "const sum = (num1, num2) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",

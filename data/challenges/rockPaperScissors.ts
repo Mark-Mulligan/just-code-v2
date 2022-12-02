@@ -56,6 +56,7 @@ const data: CodingChallengeData = {
   instructions:
     'Create a function that takes in a string ("rock", "paper", or "scissors") and returns the hand that would beat it. For example, if "rock" is passed in, the function would return "paper"',
   testScriptCode: createTestScriptString(rockPaperScissorsTests),
+  difficulty: 1,
   startingCode:
     "const rockPaperScissors = (turn) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",
   testCriteria: extractTestCriteria(rockPaperScissorsTests()),

@@ -57,6 +57,7 @@ const data: CodingChallengeData = {
   instructions:
     'Create a function that takes in a single argument, an integer greater than 0, and returns "even" if the number is even or "odd" if the number is odd.',
   testScriptCode: createTestScriptString(evenOrOddTests),
+  difficulty: 1,
   startingCode:
     "const evenOrOdd = (num) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",
   testCriteria: extractTestCriteria(evenOrOddTests()),

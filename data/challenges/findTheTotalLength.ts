@@ -70,6 +70,7 @@ const data: CodingChallengeData = {
     "Create a function that finds the total length of all the string in an array combined.",
   instructions:
     "Create a function that takes in an array of strings. Return the length of all the strings in that array combined. In others words, the length of what the string would be if all elements of the array were combined into one long string.",
+  difficulty: 1,
   testScriptCode: createTestScriptString(findTheTotalLengthTests),
   startingCode:
     "const totalLength = (strArr) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",

@@ -39,6 +39,7 @@ const Problems: NextPage<IProps> = ({
             <CodingChallengeCard
               key={key}
               name={value.title}
+              difficulty={value.difficulty}
               description={value.description}
               challengeKey={key}
               completed={completedChallenges.includes(key)}
