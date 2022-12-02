@@ -9,8 +9,6 @@ interface IProps {
 }
 
 const TestCriteriaList: FC<IProps> = ({ testCriteria }) => {
-  console.log(testCriteria);
-
   return (
     <ul className="mb-4 list-inside list-disc">
       {testCriteria.map((item) => {

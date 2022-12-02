@@ -5,6 +5,9 @@ import React, { useState, FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+// Supabase
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+
 // axios
 import axios from "axios";
 
@@ -35,6 +38,8 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
   codingChallengeData,
   userCode,
 }) => {
+  const supabase = useSupabaseClient();
+  const user = useUser();
   const router = useRouter();
 
   const [testResults, setTestResults] = useState<TestResult[]>([]);
@@ -44,40 +49,49 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const handleCodeSubmit = (e: React.FormEvent) => {
+  const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      return;
+    }
+
     setIsFetchingData(true);
     setErrorMessage("");
+    const problemKey = router.query.problemKey;
 
-    axios
-      .post(`/api/testcode/${router.query.problemKey}`, { userCode })
-      .then(({ data }: TestCodeRouteResponse) => {
-        setTestResults(data.testResults);
-        setNumTestsPassed(data.numTestsPassed);
-        setOverallResult(data.overallResult);
-        setIsFetchingData(false);
-        console.log(data);
-
-        if (
-          data.overallResult === "passed" &&
-          typeof router.query.problemKey === "string"
-        ) {
-          setShowModal(true);
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          setErrorMessage(err.response.data.message);
-          setTestResults([]);
-        } else {
-          console.log(err);
-          setErrorMessage(
-            "There was a server error while processing your code. Try again"
-          );
-        }
-
-        setIsFetchingData(false);
+    try {
+      const { data } = await axios.post(`/api/testcode/${problemKey}`, {
+        userCode,
       });
+      setTestResults(data.testResults);
+      setNumTestsPassed(data.numTestsPassed);
+      setOverallResult(data.overallResult);
+      console.log(data);
+
+      if (data.overallResult === "passed" && typeof problemKey === "string") {
+        try {
+          await supabase
+            .from("completed_challenges")
+            .insert({ problem_key: problemKey, user_id: user.id });
+        } catch (err) {
+          console.log(err);
+        }
+
+        setShowModal(true);
+      }
+    } catch (err: any) {
+      if (err.response.status === 400) {
+        setErrorMessage(err.response.data.message);
+        setTestResults([]);
+      } else {
+        console.log(err);
+        setErrorMessage(
+          "There was a server error while processing your code. Try again"
+        );
+      }
+    }
+
+    setIsFetchingData(false);
   };
 
   return (
