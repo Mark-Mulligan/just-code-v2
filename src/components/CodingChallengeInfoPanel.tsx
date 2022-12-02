@@ -69,13 +69,13 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       console.log(data);
 
       if (data.overallResult === "passed" && typeof problemKey === "string") {
-        try {
-          await supabase
-            .from("completed_challenges")
-            .insert({ problem_key: problemKey, user_id: user.id });
-        } catch (err) {
-          console.log(err);
-        }
+        const { data, error, status } = await supabase
+          .from("completed_challenges")
+          .insert({ problem_key: problemKey, user_id: user.id });
+
+        console.log("data", data);
+        console.log("error", error);
+        console.log("status", status);
 
         setShowModal(true);
       }
