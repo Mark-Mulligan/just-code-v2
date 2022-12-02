@@ -157,7 +157,15 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
         <button type="submit" className="btn-primary btn-block btn mb-3">
           Submit Code
         </button>
-        <button className="btn-block btn mb-3">Help</button>
+        <a
+          href={`${router.asPath}/help`}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-block btn mb-3"
+        >
+          Help
+        </a>
+
         <Link href="/coding-challenges" className="btn-block btn">
           Back To Challenges
         </Link>

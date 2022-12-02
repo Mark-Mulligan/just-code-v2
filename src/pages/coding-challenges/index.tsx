@@ -13,10 +13,7 @@ import { codingChallengesData } from "../../../data/codingChallengeData";
 import CodingChallengeCard from "../../components/CodingChallengeCard";
 
 // Custom Types
-import {
-  AllCodingChallengesData,
-  CodingChallengeData,
-} from "../../../types/customTypes";
+import { AllCodingChallengesData } from "../../../types/customTypes";
 
 interface IProps {
   codingChallengeOverviews: AllCodingChallengesData;
