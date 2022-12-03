@@ -16,7 +16,9 @@ import fizzBuzz from "./challenges/fizzBuzz";
 import luckyNumberThree from "./challenges/luckNumberThree";
 import combineTwoObjs from "./challenges/combineTwoObjs";
 import sortArrayInts from "./challenges/sortArrayInts";
+import historicalDay from "./challenges/historicalDay";
 import primeNumberCheck from "./challenges/primeNumberCheck";
+import phoneNumberChecker from "./challenges/phoneNumberChecker";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -33,5 +35,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   "lucky-number-3": luckyNumberThree,
   "combine-two-objs": combineTwoObjs,
   "sort-array-ints": sortArrayInts,
+  "historical-day": historicalDay,
   "prime-number-check": primeNumberCheck,
+  "phone-number-checker": phoneNumberChecker,
 };

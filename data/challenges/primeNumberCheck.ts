@@ -4,7 +4,7 @@ import { createTestScriptString, extractTestCriteria } from "../utils";
 // Custom Types
 import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
-export const primeNumberCheckSolution = `const isPrime = (num) => {
+const primeNumberCheckSolution = `const isPrime = (num) => {
   for (var i = 2; i < num; i++) {
     if (num % i === 0) return false;
   } 
