@@ -8,6 +8,9 @@ import rockPaperScissors from "./challenges/rockPaperScissors";
 import findTheTotalLength from "./challenges/findTheTotalLength";
 import divideAndRound from "./challenges/divideAndRound";
 import reverseString from "./challenges/reverseString";
+import largestNumInArr from "./challenges/largestNumInArr";
+import addNumbersInRange from "./challenges/addNumbersInRange";
+import checkObjectKeys from "./challenges/checkObjectKeys";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -16,4 +19,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   "find-the-total-length": findTheTotalLength,
   "divide-and-round": divideAndRound,
   "reverse-string": reverseString,
+  "largest-num-in-array": largestNumInArr,
+  "add-numbers-in-range": addNumbersInRange,
+  "check-object-keys": checkObjectKeys,
 };
