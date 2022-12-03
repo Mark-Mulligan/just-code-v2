@@ -102,3 +102,43 @@ export const largestSumReturnTypeCheck = (largestSumResult: {
 
   return true;
 };
+
+export const checkArrContents = (inputArr: (string | number)[]) => {
+  let hasNumbers = false;
+  let hasStrings = false;
+
+  if (!Array.isArray(inputArr)) {
+    return { passed: false, message: "Function did not return an array." };
+  } else if (inputArr.length !== 100) {
+    return {
+      passed: false,
+      message: "Return array did not contain 100 values",
+    };
+  }
+
+  for (let i = 0; i < inputArr.length; i++) {
+    if (typeof inputArr[i] === "number") hasNumbers = true;
+    if (typeof inputArr[i] === "string") hasStrings = true;
+
+    if (hasNumbers && hasStrings) {
+      break;
+    }
+  }
+
+  if (hasNumbers && hasStrings) {
+    return {
+      passed: true,
+      message:
+        "Funtion returns an array containing 100 values with numbers and strings.",
+    };
+  } else if (!hasNumbers) {
+    return { passed: false, message: "Return array does not have numbers." };
+  } else if (!hasStrings) {
+    return { passed: false, message: "Return array does not have strings." };
+  } else {
+    return {
+      passed: false,
+      message: "Return array does not have numbers or strings.",
+    };
+  }
+};

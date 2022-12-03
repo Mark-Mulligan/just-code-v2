@@ -1,10 +1,8 @@
 // Testing Utils
-import { createTestScriptString } from "../utils";
-import { extractTestCriteria } from "../utils";
+import { createTestScriptString, extractTestCriteria } from "../utils";
 
 // Custom Types
-import { TestResult } from "../../types/customTypes";
-import { CodingChallengeData } from "../../types/customTypes";
+import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
 const sumTwoIntSolution = `const sum = (num1, num2) => {
   return num1 + num2;

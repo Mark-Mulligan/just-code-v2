@@ -12,6 +12,7 @@ import largestNumInArr from "./challenges/largestNumInArr";
 import addNumbersInRange from "./challenges/addNumbersInRange";
 import checkObjectKeys from "./challenges/checkObjectKeys";
 import longestWord from "./challenges/longestWord";
+import fizzBuzz from "./challenges/fizzBuzz";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -24,4 +25,5 @@ export const codingChallengesData: AllCodingChallengesData = {
   "add-numbers-in-range": addNumbersInRange,
   "check-object-keys": checkObjectKeys,
   "longest-word": longestWord,
+  "fizz-buzz": fizzBuzz,
 };

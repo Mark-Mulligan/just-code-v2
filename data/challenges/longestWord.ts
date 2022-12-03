@@ -1,10 +1,8 @@
 // Testing Utils
-import { createTestScriptString } from "../utils";
-import { extractTestCriteria } from "../utils";
+import { createTestScriptString, extractTestCriteria } from "../utils";
 
 // Custom Types
-import { TestResult } from "../../types/customTypes";
-import { CodingChallengeData } from "../../types/customTypes";
+import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
 export const longestWordSolution = `const longestWord = (sentence) => {
   let sentenceNoPunctuation = sentence.slice(0, -1);

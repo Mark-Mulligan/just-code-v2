@@ -1,10 +1,8 @@
 // Testing Utils
-import { createTestScriptString } from "../utils";
-import { extractTestCriteria } from "../utils";
+import { createTestScriptString, extractTestCriteria } from "../utils";
 
 // Custom Types
-import { TestResult } from "../../types/customTypes";
-import { CodingChallengeData } from "../../types/customTypes";
+import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
 const evenOrOddSolution = `const evenOrOdd = (num) => {
   return (num % 2 === 0) ? 'even' : 'odd';
