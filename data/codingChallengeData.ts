@@ -11,6 +11,7 @@ import reverseString from "./challenges/reverseString";
 import largestNumInArr from "./challenges/largestNumInArr";
 import addNumbersInRange from "./challenges/addNumbersInRange";
 import checkObjectKeys from "./challenges/checkObjectKeys";
+import longestWord from "./challenges/longestWord";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -22,4 +23,5 @@ export const codingChallengesData: AllCodingChallengesData = {
   "largest-num-in-array": largestNumInArr,
   "add-numbers-in-range": addNumbersInRange,
   "check-object-keys": checkObjectKeys,
+  "longest-word": longestWord,
 };
