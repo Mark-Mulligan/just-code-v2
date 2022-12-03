@@ -13,6 +13,8 @@ import addNumbersInRange from "./challenges/addNumbersInRange";
 import checkObjectKeys from "./challenges/checkObjectKeys";
 import longestWord from "./challenges/longestWord";
 import fizzBuzz from "./challenges/fizzBuzz";
+import luckyNumberThree from "./challenges/luckNumberThree";
+import combineTwoObjs from "./challenges/combineTwoObjs";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -26,4 +28,6 @@ export const codingChallengesData: AllCodingChallengesData = {
   "check-object-keys": checkObjectKeys,
   "longest-word": longestWord,
   "fizz-buzz": fizzBuzz,
+  "lucky-number-3": luckyNumberThree,
+  "combine-two-objs": combineTwoObjs,
 };
