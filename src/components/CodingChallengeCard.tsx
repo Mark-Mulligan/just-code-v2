@@ -28,17 +28,19 @@ const CodingChallengeCard: FC<IProps> = ({
   return (
     <li className="card mx-auto mb-6 bg-base-300 shadow-xl">
       <div className="card-body">
-        <h4 className="space-between card-title flex items-center justify-between">
-          <div>
-            <span className="mr-2">{name}</span>{" "}
+        <div className="space-between card-title block xs:flex xs:items-center xs:justify-between">
+          <div className="flex items-center">
+            <h4 className="mr-2">{name}</h4>
             <DifficultyBadge difficulty={difficulty} />
           </div>
           {completed ? (
-            <div className="badge badge-accent">Completed</div>
+            <div className="badge-accent badge">Completed</div>
           ) : (
-            <div className="badge badge-outline">Not Completed</div>
+            <div className="badge-outline badge whitespace-nowrap">
+              Not Completed
+            </div>
           )}
-        </h4>
+        </div>
         <p className="mb-3 font-extralight">{description}</p>
         <div className="card-actions">
           <Link

@@ -27,7 +27,7 @@ const Problems: NextPage<IProps> = ({
   completedChallenges,
 }) => {
   return (
-    <div className="container mx-auto pt-20">
+    <div className="container mx-auto px-2 pt-20">
       <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
       <h6 className="mb-4 text-center">
         {completedChallenges.length}/
