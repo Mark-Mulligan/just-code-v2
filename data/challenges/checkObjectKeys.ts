@@ -71,7 +71,7 @@ const checkObjectKeysTests = () => {
 const data: CodingChallengeData = {
   title: "Check Key in Object",
   description:
-    "Create a function that determines wether a given key exist in an object.",
+    "Create a function that determines wether a given key exists in an object.",
   instructions:
     "Create a function called hasKey that takes in an object, and targetKey as a string.  The function should return a boolean value based on whether the given object contains the target key.",
   difficulty: 1,

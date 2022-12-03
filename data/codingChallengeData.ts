@@ -15,6 +15,8 @@ import longestWord from "./challenges/longestWord";
 import fizzBuzz from "./challenges/fizzBuzz";
 import luckyNumberThree from "./challenges/luckNumberThree";
 import combineTwoObjs from "./challenges/combineTwoObjs";
+import sortArrayInts from "./challenges/sortArrayInts";
+import primeNumberCheck from "./challenges/primeNumberCheck";
 
 export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
@@ -30,4 +32,6 @@ export const codingChallengesData: AllCodingChallengesData = {
   "fizz-buzz": fizzBuzz,
   "lucky-number-3": luckyNumberThree,
   "combine-two-objs": combineTwoObjs,
+  "sort-array-ints": sortArrayInts,
+  "prime-number-check": primeNumberCheck,
 };
