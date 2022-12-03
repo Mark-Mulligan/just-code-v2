@@ -26,6 +26,20 @@ const fizzBuzz = () => {
   return [] as (string | number)[];
 };
 
+const formatFizzBuzzResult = (fizzBuzzResult: (string | number)[]) => {
+  let result = "[";
+
+  fizzBuzzResult.forEach((item, index) => {
+    result += ` ${item},`;
+
+    if (index % 10 === 9 && index !== 99) {
+      result += "\n";
+    }
+  });
+
+  return `${result}]`;
+};
+
 const checkArrContents = (inputArr: (string | number)[]) => {
   let hasNumbers = false;
   let hasStrings = false;
@@ -66,21 +80,10 @@ const checkArrContents = (inputArr: (string | number)[]) => {
   }
 };
 
-const formatFizzBuzzResult = (fizzBuzzResult: (string | number)[]) => {
-  let result = "[";
-
-  fizzBuzzResult.forEach((item, index) => {
-    result += ` ${item},`;
-
-    if (index % 10 === 9 && index !== 99) {
-      result += "\n";
-    }
-  });
-
-  return `${result}]`;
-};
-
-const areArrsEqual = (arr1: (string | number)[], arr2: (string | number)[]) => {
+const areArraysEqual = (
+  arr1: (string | number)[],
+  arr2: (string | number)[]
+) => {
   let result = true;
 
   if (
@@ -223,7 +226,7 @@ export const fizzBuzzTests = () => {
   });
   testResults.push({
     test: `fizzBuzz() returns \n ${formatFizzBuzzResult(fizzBuzzResult)}`,
-    passed: areArrsEqual(fizzBuzz(), fizzBuzzResult),
+    passed: areArraysEqual(fizzBuzz(), fizzBuzzResult),
     result: formatFizzBuzzResult(fizzBuzz()),
   });
 
@@ -238,14 +241,8 @@ const data: CodingChallengeData = {
   difficulty: 1,
   testScriptCode: createTestScriptString(fizzBuzzTests, [
     { name: "checkArrContents", func: checkArrContents },
-    {
-      name: "formatFizzBuzzResult",
-      func: formatFizzBuzzResult,
-    },
-    {
-      name: "areArrsEqual",
-      func: areArrsEqual,
-    },
+    { name: "formatFizzBuzzResult", func: formatFizzBuzzResult },
+    { name: "areArraysEqual", func: areArraysEqual },
   ]),
   startingCode:
     "const fizzBuzz = () => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",
