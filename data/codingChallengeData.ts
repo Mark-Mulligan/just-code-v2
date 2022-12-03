@@ -18,6 +18,7 @@ import combineTwoObjs from "./challenges/combineTwoObjs";
 import sortArrayInts from "./challenges/sortArrayInts";
 import historicalDay from "./challenges/historicalDay";
 import primeNumberCheck from "./challenges/primeNumberCheck";
+import alphabetizeNames from "./challenges/alphabetizeNames";
 import phoneNumberChecker from "./challenges/phoneNumberChecker";
 
 export const codingChallengesData: AllCodingChallengesData = {
@@ -37,5 +38,6 @@ export const codingChallengesData: AllCodingChallengesData = {
   "sort-array-ints": sortArrayInts,
   "historical-day": historicalDay,
   "prime-number-check": primeNumberCheck,
+  "alphabetize-names": alphabetizeNames,
   "phone-number-checker": phoneNumberChecker,
 };
