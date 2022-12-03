@@ -64,7 +64,6 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       });
       setTestResults(data.testResults);
       setNumTestsPassed(data.numTestsPassed);
-      console.log(data);
 
       if (data.overallResult === "passed" && typeof problemKey === "string") {
         const { error, status } = await supabase

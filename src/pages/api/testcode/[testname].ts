@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 // Node FS
-// import fs from 'fs';
+import fs from "fs";
 
 // VM2
 import { VM } from "vm2";
@@ -35,6 +35,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Don't remove but also don't push to prod.  It will break in prod environment
     // fs.writeFileSync(`data/${testname}.js`, `${userCode}\n${testScriptCode}`);
     //fs.writeFileSync(`data/${testname}.txt`, testScriptCode);
+
+    console.log(testScriptCode);
 
     try {
       testResults = vm.run(`${userCode}\n${testScriptCode}`);
