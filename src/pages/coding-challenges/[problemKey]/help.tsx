@@ -4,9 +4,11 @@ import { useState } from "react";
 // Next
 import { NextPage } from "next";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 // Supabase
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 // uuid
 import { v4 as uuidv4 } from "uuid";
@@ -26,10 +28,27 @@ interface IProps {
 }
 
 const Help: NextPage<IProps> = ({ codingChallengeData }) => {
+  const supabase = useSupabaseClient();
+  const router = useRouter();
   const [showSolution, setShowSolution] = useState(false);
 
   const handleShowSolution = () => {
     setShowSolution(true);
+  };
+
+  const getUserSolutions = async () => {
+    const { problemKey } = router.query;
+
+    if (problemKey) {
+      const { data, count, error } = await supabase
+        .from("completed_challenges")
+        .select("completed_at, solution_code", { count: "exact" })
+        .eq("problem_key", problemKey);
+
+      console.log(data);
+      console.log(count);
+      console.log(error);
+    }
   };
 
   return (
@@ -68,7 +87,9 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         )}
 
         {showSolution && (
-          <button className="btn-primary btn">View User Solutions</button>
+          <button className="btn-primary btn" onClick={getUserSolutions}>
+            View User Solutions
+          </button>
         )}
       </section>
     </div>
