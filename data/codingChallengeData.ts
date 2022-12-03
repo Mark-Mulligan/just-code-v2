@@ -5,8 +5,10 @@ import { AllCodingChallengesData } from "../types/customTypes";
 import sumTwoInts from "./challenges/sumTwoInts";
 import evenOrOdd from "./challenges/evenOrOdd";
 import rockPaperScissors from "./challenges/rockPaperScissors";
+import findTheIndex from "./challenges/findTheIndex";
 import findTheTotalLength from "./challenges/findTheTotalLength";
 import divideAndRound from "./challenges/divideAndRound";
+import largestResult from "./challenges/largestResult";
 import reverseString from "./challenges/reverseString";
 import largestNumInArr from "./challenges/largestNumInArr";
 import addNumbersInRange from "./challenges/addNumbersInRange";
@@ -25,8 +27,10 @@ export const codingChallengesData: AllCodingChallengesData = {
   "sum-two-ints": sumTwoInts,
   "even-or-odd": evenOrOdd,
   "rock-paper-scissors": rockPaperScissors,
+  "find-the-index": findTheIndex,
   "find-the-total-length": findTheTotalLength,
   "divide-and-round": divideAndRound,
+  "largest-result": largestResult,
   "reverse-string": reverseString,
   "largest-num-in-array": largestNumInArr,
   "add-numbers-in-range": addNumbersInRange,
