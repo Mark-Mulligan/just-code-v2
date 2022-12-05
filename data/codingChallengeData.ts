@@ -2,6 +2,7 @@
 import { AllCodingChallengesData } from "../types/customTypes";
 
 // Challenge Data
+// Easy
 import sumTwoInts from "./challenges/sumTwoInts";
 import evenOrOdd from "./challenges/evenOrOdd";
 import rockPaperScissors from "./challenges/rockPaperScissors";
@@ -16,14 +17,20 @@ import addNumbersInRange from "./challenges/addNumbersInRange";
 import checkObjectKeys from "./challenges/checkObjectKeys";
 import longestWord from "./challenges/longestWord";
 import fizzBuzz from "./challenges/fizzBuzz";
+import countTheVowels from "./challenges/countTheVowels";
 import luckyNumberThree from "./challenges/luckNumberThree";
 import combineTwoObjs from "./challenges/combineTwoObjs";
+
+// Medium
 import sortArrayInts from "./challenges/sortArrayInts";
+import calculateTheTip from "./challenges/calculateTheTip";
 import historicalDay from "./challenges/historicalDay";
 import primeNumberCheck from "./challenges/primeNumberCheck";
 import sortTheDates from "./challenges/sortTheDates";
 import alphabetizeNames from "./challenges/alphabetizeNames";
 import militaryTimeConversion from "./challenges/militaryTimeConversion";
+
+// Hard
 import phoneNumberChecker from "./challenges/phoneNumberChecker";
 
 export const codingChallengesData: AllCodingChallengesData = {
@@ -41,9 +48,11 @@ export const codingChallengesData: AllCodingChallengesData = {
   "check-object-keys": checkObjectKeys,
   "longest-word": longestWord,
   "fizz-buzz": fizzBuzz,
+  "count-the-vowels": countTheVowels,
   "lucky-number-3": luckyNumberThree,
   "combine-two-objs": combineTwoObjs,
   "sort-array-ints": sortArrayInts,
+  "calculate-the-tip": calculateTheTip,
   "historical-day": historicalDay,
   "prime-number-check": primeNumberCheck,
   "sort-the-dates": sortTheDates,
