@@ -11,6 +11,7 @@ import divideAndRound from "./challenges/divideAndRound";
 import largestResult from "./challenges/largestResult";
 import reverseString from "./challenges/reverseString";
 import largestNumInArr from "./challenges/largestNumInArr";
+import checkForDuplicates from "./challenges/checkForDuplicates";
 import addNumbersInRange from "./challenges/addNumbersInRange";
 import checkObjectKeys from "./challenges/checkObjectKeys";
 import longestWord from "./challenges/longestWord";
@@ -21,6 +22,7 @@ import sortArrayInts from "./challenges/sortArrayInts";
 import historicalDay from "./challenges/historicalDay";
 import primeNumberCheck from "./challenges/primeNumberCheck";
 import alphabetizeNames from "./challenges/alphabetizeNames";
+import militaryTimeConversion from "./challenges/militaryTimeConversion";
 import phoneNumberChecker from "./challenges/phoneNumberChecker";
 
 export const codingChallengesData: AllCodingChallengesData = {
@@ -30,9 +32,10 @@ export const codingChallengesData: AllCodingChallengesData = {
   "find-the-index": findTheIndex,
   "find-the-total-length": findTheTotalLength,
   "divide-and-round": divideAndRound,
-  "largest-result": largestResult,
-  "reverse-string": reverseString,
   "largest-num-in-array": largestNumInArr,
+  "reverse-string": reverseString,
+  "check-for-duplicates": checkForDuplicates,
+  "largest-result": largestResult,
   "add-numbers-in-range": addNumbersInRange,
   "check-object-keys": checkObjectKeys,
   "longest-word": longestWord,
@@ -43,5 +46,6 @@ export const codingChallengesData: AllCodingChallengesData = {
   "historical-day": historicalDay,
   "prime-number-check": primeNumberCheck,
   "alphabetize-names": alphabetizeNames,
+  "military-time-conversion": militaryTimeConversion,
   "phone-number-checker": phoneNumberChecker,
 };
