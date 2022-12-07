@@ -38,6 +38,7 @@ import militaryTimeConversion from "./challenges/militaryTimeConversion";
 import thanksgivingDate from "./challenges/thanksgivingDate";
 
 // Hard
+import ticTacToe from "./challenges/ticTacToe";
 import snakeToCamelCase from "./challenges/snakeToCamelCase";
 import compareTwoObjs from "./challenges/compareTwoObjs";
 import phoneNumberChecker from "./challenges/phoneNumberChecker";
@@ -74,6 +75,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   "combine-two-arrays": combineTwoArrays,
   "military-time-conversion": militaryTimeConversion,
   "thanksgiving-date": thanksgivingDate,
+  "tic-tac-toe": ticTacToe,
   "snake-to-camel-case": snakeToCamelCase,
   "compare-two-objs": compareTwoObjs,
   "phone-number-checker": phoneNumberChecker,
