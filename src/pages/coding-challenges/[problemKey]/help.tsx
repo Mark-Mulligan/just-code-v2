@@ -21,16 +21,22 @@ import { javascript } from "@codemirror/lang-javascript";
 import { codingChallengesData } from "../../../../data/codingChallengeData";
 
 // Custom Types
-import { IParams, CodingChallengeData } from "../../../../types/customTypes";
+import {
+  IParams,
+  CodingChallengeData,
+  UserSolution,
+} from "../../../../types/customTypes";
+import { Database } from "../../../../types/database";
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
 }
 
 const Help: NextPage<IProps> = ({ codingChallengeData }) => {
-  const supabase = useSupabaseClient();
+  const supabase = useSupabaseClient<Database>();
   const router = useRouter();
   const [showSolution, setShowSolution] = useState(false);
+  const [userSolutions, setUserSolutions] = useState<any>([]);
 
   const handleShowSolution = () => {
     setShowSolution(true);
@@ -45,6 +51,8 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         .select("completed_at, solution_code", { count: "exact" })
         .eq("problem_key", problemKey);
 
+      setUserSolutions(data);
+
       console.log(data);
       console.log(count);
       console.log(error);
@@ -52,7 +60,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
   };
 
   return (
-    <div className="container mx-auto mt-16 max-w-3xl pt-4">
+    <div className="container mx-auto mt-16 max-w-3xl px-4 pt-4">
       <h1 className=" mb-4 text-center text-4xl font-bold">
         {codingChallengeData.title}
       </h1>
@@ -86,11 +94,30 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
           </button>
         )}
 
-        {showSolution && (
+        {showSolution && userSolutions.length === 0 && (
           <button className="btn-primary btn" onClick={getUserSolutions}>
             View User Solutions
           </button>
         )}
+
+        {userSolutions.length > 0 && (
+          <h2 className="mb-2 text-2xl font-bold">User Solutions</h2>
+        )}
+
+        {userSolutions.map((solution: UserSolution) => {
+          return (
+            <div className="mb-4" key={uuidv4()}>
+              <h4>Submitted: {solution.completed_at}</h4>
+              <CodeMirror
+                theme={"dark"}
+                value={solution.solution_code}
+                height="auto"
+                editable={false}
+                extensions={[javascript({ jsx: true })]}
+              />
+            </div>
+          );
+        })}
       </section>
     </div>
   );

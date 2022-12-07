@@ -44,3 +44,8 @@ export type CodingExerciseStaticPath = {
 export interface AllCodingChallengesData {
   [key: string]: CodingChallengeData;
 }
+
+export interface UserSolution {
+  completed_at: string;
+  solution_code: string;
+}
