@@ -22,7 +22,9 @@ import luckyNumberThree from "./challenges/luckNumberThree";
 import combineTwoObjs from "./challenges/combineTwoObjs";
 
 // Medium
+import removeDuplicatesInArray from "./challenges/removeDuplicatesInArray";
 import sortArrayInts from "./challenges/sortArrayInts";
+import sortTheDays from "./challenges/sortTheDays";
 import calculateTheTip from "./challenges/calculateTheTip";
 import historicalDay from "./challenges/historicalDay";
 import primeNumberCheck from "./challenges/primeNumberCheck";
@@ -31,6 +33,7 @@ import alphabetizeNames from "./challenges/alphabetizeNames";
 import militaryTimeConversion from "./challenges/militaryTimeConversion";
 
 // Hard
+import compareTwoObjs from "./challenges/compareTwoObjs";
 import phoneNumberChecker from "./challenges/phoneNumberChecker";
 
 export const codingChallengesData: AllCodingChallengesData = {
@@ -51,12 +54,15 @@ export const codingChallengesData: AllCodingChallengesData = {
   "count-the-vowels": countTheVowels,
   "lucky-number-3": luckyNumberThree,
   "combine-two-objs": combineTwoObjs,
+  "remove-duplicates-in-array": removeDuplicatesInArray,
   "sort-array-ints": sortArrayInts,
+  "sort-the-days": sortTheDays,
   "calculate-the-tip": calculateTheTip,
   "historical-day": historicalDay,
   "prime-number-check": primeNumberCheck,
   "sort-the-dates": sortTheDates,
   "alphabetize-names": alphabetizeNames,
   "military-time-conversion": militaryTimeConversion,
+  "compare-two-objs": compareTwoObjs,
   "phone-number-checker": phoneNumberChecker,
 };
