@@ -37,25 +37,58 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
   const router = useRouter();
   const [showSolution, setShowSolution] = useState(false);
   const [userSolutions, setUserSolutions] = useState<any>([]);
+  const [userSolutionsCount, setUserSolutionsCount] = useState(0);
+  const [currentRange, setCurrentRange] = useState({ from: 0, to: 9 });
 
-  const handleShowSolution = () => {
+  console.log(userSolutions.length, userSolutionsCount);
+
+  const handleShowSolution = async () => {
     setShowSolution(true);
+    const result = await getUserSolutions(currentRange.from, currentRange.to);
+
+    if (!result) {
+      console.log("Could not load user solutions");
+      return;
+    }
+
+    if (result.data && result.count) {
+      setUserSolutions(result.data);
+      setUserSolutionsCount(result.count);
+    }
   };
 
-  const getUserSolutions = async () => {
+  const getUserSolutions = async (from: number, to: number) => {
     const { problemKey } = router.query;
 
     if (problemKey) {
       const { data, count, error } = await supabase
         .from("completed_challenges")
         .select("completed_at, solution_code", { count: "exact" })
-        .eq("problem_key", problemKey);
+        .eq("problem_key", problemKey)
+        .range(from, to);
 
-      setUserSolutions(data);
+      return { data, count, error };
+    }
+  };
 
-      console.log(data);
-      console.log(count);
-      console.log(error);
+  const loadMoreSolutions = async () => {
+    const from = currentRange.from + 10;
+    const to =
+      currentRange.to + 10 < userSolutionsCount
+        ? currentRange.to + 10
+        : userSolutionsCount;
+
+    let newRange = { from, to };
+    const result = await getUserSolutions(newRange.from, newRange.to);
+
+    if (!result) {
+      console.log("Could not load user solutions");
+      return;
+    }
+
+    if (result.data) {
+      setUserSolutions([...userSolutions, ...result.data]);
+      setCurrentRange(newRange);
     }
   };
 
@@ -94,30 +127,33 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
           </button>
         )}
 
-        {showSolution && userSolutions.length === 0 && (
-          <button className="btn-primary btn" onClick={getUserSolutions}>
-            View User Solutions
+        {userSolutions.length > 0 && (
+          <>
+            <h2 className="mb-2 text-2xl font-bold">User Solutions</h2>
+            <ul>
+              {userSolutions.map((solution: UserSolution) => {
+                return (
+                  <li className="mb-4" key={solution.completed_at}>
+                    <h4 className="mb-1">Submitted: {solution.completed_at}</h4>
+                    <CodeMirror
+                      theme={"dark"}
+                      value={solution.solution_code}
+                      height="auto"
+                      editable={false}
+                      extensions={[javascript({ jsx: true })]}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
+        {userSolutions.length < userSolutionsCount && (
+          <button className="primary btn" onClick={loadMoreSolutions}>
+            Load More Solutions
           </button>
         )}
-
-        {userSolutions.length > 0 && (
-          <h2 className="mb-2 text-2xl font-bold">User Solutions</h2>
-        )}
-
-        {userSolutions.map((solution: UserSolution) => {
-          return (
-            <div className="mb-4" key={uuidv4()}>
-              <h4>Submitted: {solution.completed_at}</h4>
-              <CodeMirror
-                theme={"dark"}
-                value={solution.solution_code}
-                height="auto"
-                editable={false}
-                extensions={[javascript({ jsx: true })]}
-              />
-            </div>
-          );
-        })}
       </section>
     </div>
   );
