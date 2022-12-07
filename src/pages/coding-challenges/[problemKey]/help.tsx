@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 // Supabase
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 // uuid
 import { v4 as uuidv4 } from "uuid";
@@ -16,6 +16,9 @@ import { v4 as uuidv4 } from "uuid";
 // CodeMirror
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
+
+// date-fns
+import { format } from "date-fns";
 
 // Data
 import { codingChallengesData } from "../../../../data/codingChallengeData";
@@ -40,8 +43,6 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
   const [userSolutionsCount, setUserSolutionsCount] = useState(0);
   const [currentRange, setCurrentRange] = useState({ from: 0, to: 9 });
 
-  console.log(userSolutions.length, userSolutionsCount);
-
   const handleShowSolution = async () => {
     setShowSolution(true);
     const result = await getUserSolutions(currentRange.from, currentRange.to);
@@ -65,7 +66,8 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         .from("completed_challenges")
         .select("completed_at, solution_code", { count: "exact" })
         .eq("problem_key", problemKey)
-        .range(from, to);
+        .range(from, to)
+        .order("completed_at", { ascending: false });
 
       return { data, count, error };
     }
@@ -134,7 +136,11 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
               {userSolutions.map((solution: UserSolution) => {
                 return (
                   <li className="mb-4" key={solution.completed_at}>
-                    <h4 className="mb-1">Submitted: {solution.completed_at}</h4>
+                    <h4 className="mb-1">
+                      Submitted:{" "}
+                      {format(new Date(solution.completed_at), "mm/dd/yyyy")} at{" "}
+                      {format(new Date(solution.completed_at), "h:mm:ss aa")}
+                    </h4>
                     <CodeMirror
                       theme={"dark"}
                       value={solution.solution_code}
@@ -150,7 +156,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         )}
 
         {userSolutions.length < userSolutionsCount && (
-          <button className="primary btn" onClick={loadMoreSolutions}>
+          <button className="btn-primary btn" onClick={loadMoreSolutions}>
             Load More Solutions
           </button>
         )}
