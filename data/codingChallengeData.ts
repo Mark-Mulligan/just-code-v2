@@ -31,6 +31,7 @@ import primeNumberCheck from "./challenges/primeNumberCheck";
 import sortTheDates from "./challenges/sortTheDates";
 import alphabetizeNames from "./challenges/alphabetizeNames";
 import militaryTimeConversion from "./challenges/militaryTimeConversion";
+import thanksgivingDate from "./challenges/thanksgivingDate";
 
 // Hard
 import compareTwoObjs from "./challenges/compareTwoObjs";
@@ -63,6 +64,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   "sort-the-dates": sortTheDates,
   "alphabetize-names": alphabetizeNames,
   "military-time-conversion": militaryTimeConversion,
+  "thanksgiving-date": thanksgivingDate,
   "compare-two-objs": compareTwoObjs,
   "phone-number-checker": phoneNumberChecker,
 };
