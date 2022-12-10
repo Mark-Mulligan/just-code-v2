@@ -26,6 +26,7 @@ import removeDuplicatesInArray from "./challenges/removeDuplicatesInArray";
 import sortArrayInts from "./challenges/sortArrayInts";
 import countUniqueValues from "./challenges/countUniqueValues";
 import sortTheDays from "./challenges/sortTheDays";
+import objectArraySearch from "./challenges/objectArraySearch";
 import calculateTheTip from "./challenges/calculateTheTip";
 import historicalDay from "./challenges/historicalDay";
 import queryParams from "./challenges/queryParams";
@@ -65,6 +66,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   "sort-array-ints": sortArrayInts,
   "count-unique-values": countUniqueValues,
   "sort-the-days": sortTheDays,
+  "object-array-search": objectArraySearch,
   "calculate-the-tip": calculateTheTip,
   "historical-day": historicalDay,
   "query-params": queryParams,
