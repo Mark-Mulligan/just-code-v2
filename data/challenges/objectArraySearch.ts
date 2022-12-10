@@ -91,12 +91,12 @@ const objectArraySearchTests = () => {
   });
 
   testResults.push({
-    test: `findOne([ \n
+    test: `findOne([
       { id: 1, name: "superUser" }, 
       { id: 2, name: "admin" }, 
-      { id: 3, name: "user" }
-    ], "id", 2) returns { id: 2, name: "admin" }
-    `,
+      { id: 3, name: "user" }], 
+      "id", 2) 
+    returns { id: 2, name: "admin" }`,
     passed: object_equals(
       findOne(
         [
@@ -122,9 +122,12 @@ const objectArraySearchTests = () => {
     ),
   });
   testResults.push({
-    test: `findOne([{ id: 1, name: "superUser" }, { id: 2, name: "admin" }, { id: 3, name: "user" }], "id", 4);
-    returns undefined
-    `,
+    test: `findOne([
+      { id: 1, name: "superUser" }, 
+      { id: 2, name: "admin" }, 
+      { id: 3, name: "user" }], 
+      "id", 4);
+    returns undefined`,
     passed:
       findOne(
         [
@@ -144,6 +147,47 @@ const objectArraySearchTests = () => {
         ],
         "id",
         4
+      )
+    ),
+  });
+  testResults.push({
+    test: `findOne([{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+      "state",
+      "tx"
+    ) returns { state: "tx" }`,
+    passed: object_equals(
+      findOne(
+        [{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+        "state",
+        "tx"
+      ),
+      { state: "tx" }
+    ),
+    result: JSON.stringify(
+      findOne(
+        [{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+        "state",
+        "tx"
+      )
+    ),
+  });
+  testResults.push({
+    test: `findOne([{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+      "state",
+      "nv"
+    ) returns undefined`,
+    passed:
+      findOne(
+        [{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+        "state",
+        "nv"
+      ) === undefined,
+
+    result: JSON.stringify(
+      findOne(
+        [{ state: "tx" }, { state: "ny" }, { state: "ca" }, { state: "nm" }],
+        "state",
+        "nv"
       )
     ),
   });

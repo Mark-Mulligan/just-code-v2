@@ -10,7 +10,7 @@ interface IProps {
 
 const TestCriteriaList: FC<IProps> = ({ testCriteria }) => {
   return (
-    <ul className="mb-4 list-inside list-disc">
+    <ul className="mb-4 list-inside list-disc whitespace-pre-wrap">
       {testCriteria.map((item) => {
         return (
           <li className="font-light" key={uuidv4()}>
