@@ -5,10 +5,8 @@ import { createTestScriptString, extractTestCriteria } from "../utils";
 import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
 const objectArrayDeleteSolution = `const deleteOne = (objArray, targetKey, targetValue) => {
-  return objArray.find((object) => {
-    return object[targetKey] === targetValue;
-  });
-};`;
+  return objArray.filter(item => item[targetKey] !== targetValue);
+}`;
 
 function deepEqual(val1: any, val2: any) {
   if (
@@ -39,9 +37,16 @@ function deepEqual(val1: any, val2: any) {
   return false;
 }
 
-const arraysEqual = (a1: any, a2: any) =>
-  a1.length === a2.length &&
-  a1.every((o: any, idx: number) => deepEqual(o, a2[idx]));
+const arraysEqual = (a1: any[], a2: any[]) => {
+  if (a1 && a1.length && a2 && a2.length) {
+    return (
+      a1.length === a2.length &&
+      a1.every((o: any, idx: number) => deepEqual(o, a2[idx]))
+    );
+  }
+
+  return false;
+};
 
 const deleteOne = (objectArray: any, targetKey: string, targetValue: any) => {
   return objectArray.find((object: any) => {
@@ -185,6 +190,7 @@ const data: CodingChallengeData = {
   instructions:
     "Create a function called deleteOne that takes in three arguments, an array of objects, a target key, and a target value for said key. The function should return a copy of the array with the object matching the target key and value removed.  If the target key and value are not found on any of the objects in the provided array, the function should return a copy of the original array.",
   testScriptCode: createTestScriptString(objectArrayDeleteTests, [
+    { name: "deepEqual", func: deepEqual },
     { name: "arraysEqual", func: arraysEqual },
   ]),
   difficulty: 2,

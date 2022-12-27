@@ -28,9 +28,16 @@ const objectsEqual = (x: any, y: any) => {
   return true;
 };
 
-const arraysEqual = (a1: any, a2: any) =>
-  a1.length === a2.length &&
-  a1.every((o: any, idx: number) => objectsEqual(o, a2[idx]));
+const arraysEqual = (a1: any[], a2: any[]) => {
+  if (a1 && a1.length && a2 && a2.length) {
+    return (
+      a1.length === a2.length &&
+      a1.every((o: any, idx: number) => objectsEqual(o, a2[idx]))
+    );
+  }
+
+  return false;
+};
 
 const update = (
   objectArray: any,

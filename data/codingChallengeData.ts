@@ -29,10 +29,12 @@ import sortTheDays from "./challenges/sortTheDays";
 import objectArraySearch from "./challenges/objectArraySearch";
 import calculateTheTip from "./challenges/calculateTheTip";
 import historicalDay from "./challenges/historicalDay";
+import objectArrayDelete from "./challenges/objectArrayDelete";
 import queryParams from "./challenges/queryParams";
 import largestSum from "./challenges/largestSum";
 import primeNumberCheck from "./challenges/primeNumberCheck";
 import sortTheDates from "./challenges/sortTheDates";
+import objectArrayUpdate from "./challenges/objectArrayUpdate";
 import alphabetizeNames from "./challenges/alphabetizeNames";
 import combineTwoArrays from "./challenges/combineTwoArrays";
 import militaryTimeConversion from "./challenges/militaryTimeConversion";
@@ -69,10 +71,12 @@ export const codingChallengesData: AllCodingChallengesData = {
   "object-array-search": objectArraySearch,
   "calculate-the-tip": calculateTheTip,
   "historical-day": historicalDay,
+  "object-array-delete": objectArrayDelete,
   "query-params": queryParams,
   "largest-sum": largestSum,
   "prime-number-check": primeNumberCheck,
   "sort-the-dates": sortTheDates,
+  "object-array-update": objectArrayUpdate,
   "alphabetize-names": alphabetizeNames,
   "combine-two-arrays": combineTwoArrays,
   "military-time-conversion": militaryTimeConversion,
