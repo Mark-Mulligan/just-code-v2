@@ -132,7 +132,10 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
             >
               Stay Here
             </button>
-            <Link href="/coding-challenges" className="btn-primary btn">
+            <Link
+              href={`/coding-challenges#${router.query.problemKey}`}
+              className="btn-primary btn"
+            >
               More Challenges
             </Link>
           </div>
@@ -165,7 +168,10 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
           Help
         </a>
 
-        <Link href="/coding-challenges" className="btn-block btn">
+        <Link
+          href={`/coding-challenges#${router.query.problemKey}`}
+          className="btn-block btn"
+        >
           Back To Challenges
         </Link>
       </form>

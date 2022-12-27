@@ -26,7 +26,10 @@ const CodingChallengeCard: FC<IProps> = ({
   completed,
 }) => {
   return (
-    <li className="card mx-auto mb-6 bg-base-300 shadow-xl">
+    <li
+      className="card mx-auto mb-6 scroll-mt-20 bg-base-300 shadow-xl"
+      id={challengeKey}
+    >
       <div className="card-body">
         <div className="space-between card-title block xs:flex xs:items-center xs:justify-between">
           <div className="flex items-center">
@@ -34,9 +37,9 @@ const CodingChallengeCard: FC<IProps> = ({
             <DifficultyBadge difficulty={difficulty} />
           </div>
           {completed ? (
-            <div className="badge-accent badge">Completed</div>
+            <div className="badge badge-accent">Completed</div>
           ) : (
-            <div className="badge-outline badge whitespace-nowrap">
+            <div className="badge badge-outline whitespace-nowrap">
               Not Completed
             </div>
           )}
