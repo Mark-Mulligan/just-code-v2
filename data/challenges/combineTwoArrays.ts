@@ -63,11 +63,11 @@ const combineTwoArraysTests = () => {
     result: JSON.stringify(combineArrs([1, 3, 5], [2, 4, 6])),
   });
   testResults.push({
-    test: 'combineArrs(["dogs", "cats", "hampsters"], ["snakes", "rats", "chickens"]) \n returns ["cats", "chickens", "dogs", "hampsters", "rats", "snakes"]',
+    test: 'combineArrs(["dogs", "cats", "hamsters"], ["snakes", "rats", "chickens"]) \n returns ["cats", "chickens", "dogs", "hamsters", "rats", "snakes"]',
     passed:
       JSON.stringify(
         combineArrs(
-          ["dogs", "cats", "hampsters"],
+          ["dogs", "cats", "hamsters"],
           ["snakes", "rats", "chickens"]
         )
       ) ===
@@ -75,12 +75,12 @@ const combineTwoArraysTests = () => {
         "cats",
         "chickens",
         "dogs",
-        "hampsters",
+        "hamsters",
         "rats",
         "snakes",
       ]),
     result: JSON.stringify(
-      combineArrs(["dogs", "cats", "hampsters"], ["snakes", "rats", "chickens"])
+      combineArrs(["dogs", "cats", "hamsters"], ["snakes", "rats", "chickens"])
     ),
   });
   testResults.push({
