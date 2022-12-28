@@ -5,8 +5,18 @@ import { createTestScriptString, extractTestCriteria } from "../utils";
 import { TestResult, CodingChallengeData } from "../../types/customTypes";
 
 const objectArrayUpdateSolution = `const update = (objArray, id, updateProperties) => {
-  return objArray.find((object) => {
-    return object[targetKey] === targetValue;
+  return objArray.map((obj) => {
+    if (obj.id === id) {
+      let newObj = { ...obj };
+
+      for (const [key, value] of Object.entries(updateProperties)) {
+        newObj[key] = value;
+      }
+
+      return newObj;
+    }
+
+    return obj;
   });
 };`;
 
@@ -39,13 +49,19 @@ const arraysEqual = (a1: any[], a2: any[]) => {
   return false;
 };
 
-const update = (
-  objectArray: any,
-  id: string | number,
-  updateProperties: any
-) => {
-  return objectArray.find((object: any) => {
-    return object;
+const update = (objArray: any, id: string | number, updateProperties: any) => {
+  return objArray.map((obj: any) => {
+    if (obj.id === id) {
+      let newObj = { ...obj };
+
+      for (const [key, value] of Object.entries(updateProperties)) {
+        newObj[key] = value;
+      }
+
+      return newObj;
+    }
+
+    return obj;
   });
 };
 
@@ -81,8 +97,8 @@ const objectArraySearchTests = () => {
     ),
   });
   testResults.push({
-    test: "Function returns undefined if target key and target value are not found",
-    passed:
+    test: "Function returns object array unchanged if id is not found.",
+    passed: arraysEqual(
       update(
         [
           { id: 1, name: "superUser" },
@@ -91,7 +107,13 @@ const objectArraySearchTests = () => {
         ],
         "id",
         4
-      ) === undefined,
+      ),
+      [
+        { id: 1, name: "superUser" },
+        { id: 2, name: "admin" },
+        { id: 3, name: "user" },
+      ]
+    ),
     result: JSON.stringify(
       update(
         [
@@ -154,6 +176,7 @@ const data: CodingChallengeData = {
   instructions:
     "Create a function called update that takes in three arguments, an array of objects, an id, and an object of key value pairs. The function should update the object in array with the provided id, updating all the key value pairs from provided in the function's third argument.",
   testScriptCode: createTestScriptString(objectArraySearchTests, [
+    { name: "objectsEqual", func: objectsEqual },
     { name: "arraysEqual", func: arraysEqual },
   ]),
   difficulty: 2,
