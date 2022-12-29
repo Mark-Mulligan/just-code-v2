@@ -20,6 +20,96 @@ export const createTestScriptString = (
   return resultStr;
 };
 
+const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
+  if (
+    (arg1 === null && arg2 === null) ||
+    (arg1 === undefined && arg2 === undefined)
+  ) {
+    return true;
+  }
+
+  if (typeof arg1 !== typeof arg2) {
+    return false;
+  }
+
+  if (
+    typeof arg1 === "string" ||
+    typeof arg1 === "number" ||
+    typeof arg1 === "boolean" ||
+    arg1 instanceof Date
+  ) {
+    return arg1.toString() === arg2.toString();
+  }
+
+  if (Array.isArray(arg1) || typeof arg1 === "object") {
+    if (Object.keys(arg1).length !== Object.keys(arg2).length) {
+      return false;
+    }
+
+    for (const key in arg1) {
+      if (!isEqual(arg1[key], arg2[key])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+};`;
+
+type ReturnTypes = "string" | "number" | "array" | "object";
+
+export const generateTestScriptString = (
+  funcName: string,
+  returnType: ReturnTypes,
+  tests: { input: any[]; result: any }[]
+) => {
+  let testScriptCode = "";
+  const testCriteria: string[] = [];
+  let testsAsString = "";
+
+  tests.forEach((test, index) => {
+    const argsAsString = test.input
+      .map((item) => JSON.stringify(item))
+      .join(",");
+    const functionCallString = `${funcName}(${argsAsString})`;
+    const resultAsString = JSON.stringify(test.result);
+
+    if (index === 0) {
+      let testDescription = `User created a function called ${funcName}`;
+      let passed = `typeof ${funcName} === "function"`;
+      let result = `typeof ${funcName}`;
+      testsAsString += `testResults.push({ test: "${testDescription}", passed: ${passed}, result: ${result}})\n`;
+      testCriteria.push(testDescription);
+
+      if (returnType === "array") {
+        passed = `Array.isArray(${functionCallString})`;
+      } else {
+        passed = `typeof ${functionCallString} === "${returnType}"`;
+      }
+      testDescription = `${functionCallString} returns a ${returnType}`;
+      result = `typeof ${functionCallString}`;
+      testsAsString += `testResults.push({ test: "${testDescription}", passed: ${passed}, result: ${result}})\n`;
+      testCriteria.push(testDescription);
+    }
+
+    const testDescription = `${functionCallString} returns ${resultAsString}`;
+    const passed = `areEqual(${functionCallString}, ${resultAsString})`;
+    const result = `JSON.stringify(${functionCallString})`;
+    const testResult = `{ test: "${testDescription}", passed: ${passed}, result: ${result}}`;
+    testsAsString += `testResults.push(${testResult})\n`;
+    testCriteria.push(testDescription);
+  });
+
+  testScriptCode += `${isEqualFunctionAsString}\n
+  const runTests = () => {
+    const testResults = [];
+    ${testsAsString}
+    return testResults;
+  }\n
+  runTests()`;
+  return { testScriptCode, testCriteria };
+};
+
 export const extractTestCriteria = (testLogic: TestResult[]) => {
   return testLogic.map((testResult) => {
     return testResult.test;

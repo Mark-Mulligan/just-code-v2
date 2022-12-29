@@ -1,5 +1,9 @@
 // Testing Utils
-import { createTestScriptString, extractTestCriteria } from "../utils";
+import {
+  createTestScriptString,
+  extractTestCriteria,
+  generateTestScriptString,
+} from "../utils";
 
 // Custom Types
 import { TestResult, CodingChallengeData } from "../../types/customTypes";
