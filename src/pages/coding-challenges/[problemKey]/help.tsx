@@ -1,35 +1,35 @@
 // React
-import { useState } from "react";
+import { useState } from 'react';
 
 // Next
-import { NextPage } from "next";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
+import { NextPage } from 'next';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 
 // Supabase
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 // uuid
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 // CodeMirror
-import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 
 // date-fns
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 // Data
-import { codingChallengesData } from "../../../../data/codingChallengeData";
+import { codingChallengesData } from '../../../../data/codingChallengeData';
 
 // Custom Types
 import {
   IParams,
   CodingChallengeData,
   UserSolution,
-} from "../../../../types/customTypes";
-import { Database } from "../../../../types/database";
+} from '../../../../types/customTypes';
+import { Database } from '../../../../types/database';
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
@@ -48,7 +48,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
     const result = await getUserSolutions(currentRange.from, currentRange.to);
 
     if (!result) {
-      console.log("Could not load user solutions");
+      console.log('Could not load user solutions');
       return;
     }
 
@@ -63,11 +63,11 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
 
     if (problemKey) {
       const { data, count, error } = await supabase
-        .from("completed_challenges")
-        .select("completed_at, solution_code", { count: "exact" })
-        .eq("problem_key", problemKey)
+        .from('completed_challenges')
+        .select('completed_at, solution_code', { count: 'exact' })
+        .eq('problem_key', problemKey)
         .range(from, to)
-        .order("completed_at", { ascending: false });
+        .order('completed_at', { ascending: false });
 
       return { data, count, error };
     }
@@ -84,7 +84,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
     const result = await getUserSolutions(newRange.from, newRange.to);
 
     if (!result) {
-      console.log("Could not load user solutions");
+      console.log('Could not load user solutions');
       return;
     }
 
@@ -116,7 +116,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         {showSolution ? (
           <div className="mb-4">
             <CodeMirror
-              theme={"dark"}
+              theme={'dark'}
               value={codingChallengeData.solutionCode}
               height="auto"
               editable={false}
@@ -137,12 +137,12 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
                 return (
                   <li className="mb-4" key={solution.completed_at}>
                     <h4 className="mb-1">
-                      Submitted:{" "}
-                      {format(new Date(solution.completed_at), "mm/dd/yyyy")} at{" "}
-                      {format(new Date(solution.completed_at), "h:mm:ss aa")}
+                      Submitted:{' '}
+                      {format(new Date(solution.completed_at), 'MM/dd/yyyy')} at{' '}
+                      {format(new Date(solution.completed_at), 'h:mm:ss aa')}
                     </h4>
                     <CodeMirror
-                      theme={"dark"}
+                      theme={'dark'}
                       value={solution.solution_code}
                       height="auto"
                       editable={false}
@@ -179,7 +179,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session)
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };

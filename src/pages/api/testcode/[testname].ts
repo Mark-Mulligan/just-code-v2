@@ -1,23 +1,23 @@
 // Next
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Node FS
-import fs from "fs";
+// import fs from 'fs';
 
 // VM2
-import { VM } from "vm2";
+import { VM } from 'vm2';
 
 // Data
-import { codingChallengesData } from "../../../../data/codingChallengeData";
+import { codingChallengesData } from '../../../../data/codingChallengeData';
 
 // Custom Types
-import { TestResult } from "../../../../types/customTypes";
+import { TestResult } from '../../../../types/customTypes';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const vm = new VM({ timeout: 1000, sandbox: {} });
   const testname = req.query.testname as string;
 
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     const { userCode } = req.body;
 
     let codingChallengeData = codingChallengesData[testname];
@@ -54,7 +54,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     const overallResult =
-      testResults.length === numTestsPassed ? "passed" : "failed";
+      testResults.length === numTestsPassed ? 'passed' : 'failed';
 
     res.status(200).json({ testResults, numTestsPassed, overallResult });
   } else {
