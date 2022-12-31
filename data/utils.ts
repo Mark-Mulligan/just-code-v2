@@ -80,7 +80,7 @@ export const generateTestScriptString = (
       let testDescription = `User created a function called ${funcName}`;
       let passed = `typeof ${funcName} === "function"`;
       let result = `typeof ${funcName}`;
-      testsAsString += `testResults.push({ test: '${testDescription}', passed: ${passed}, result: ${result}})\n`;
+      testsAsString += `testResults.push({ test: \`${testDescription}\`, passed: ${passed}, result: ${result}})\n`;
       testCriteria.push(testDescription);
 
       if (returnType === 'array') {
@@ -96,14 +96,14 @@ export const generateTestScriptString = (
       }
 
       result = `typeof ${functionCallString}`;
-      testsAsString += `testResults.push({ test: '${testDescription}', passed: ${passed}, result: ${result}})\n`;
+      testsAsString += `testResults.push({ test: \`${testDescription}\`, passed: ${passed}, result: ${result}})\n`;
       testCriteria.push(testDescription);
     }
 
     const testDescription = `${functionCallString} returns ${resultAsString}`;
     const passed = `areEqual(${functionCallString}, ${resultAsString})`;
     const result = `JSON.stringify(${functionCallString})`;
-    const testResult = `{ test: '${testDescription}', passed: ${passed}, result: ${result}}`;
+    const testResult = `{ test: \`${testDescription}\`, passed: ${passed}, result: ${result}}`;
     testsAsString += `testResults.push(${testResult})\n`;
     testCriteria.push(testDescription);
   });

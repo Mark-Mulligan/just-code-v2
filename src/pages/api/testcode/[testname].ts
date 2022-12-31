@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Node FS
-// import fs from 'fs';
+import fs from 'fs';
 
 // VM2
 import { VM } from 'vm2';
