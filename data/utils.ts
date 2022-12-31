@@ -58,10 +58,18 @@ const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
 
 type ReturnTypes = 'string' | 'number' | 'array' | 'object' | 'boolean';
 
+interface CustomTest {
+  testDescription: string;
+  passed: string;
+  result: string;
+  customVariables?: string[];
+}
+
 export const generateTestScriptString = (
   funcName: string,
   returnType: ReturnTypes,
-  tests: { input?: any[]; result: any }[]
+  tests: { input?: any[]; result: any }[],
+  customTests?: CustomTest[]
 ) => {
   let testScriptCode = '';
   const testCriteria: string[] = [];
@@ -107,6 +115,19 @@ export const generateTestScriptString = (
     testsAsString += `testResults.push(${testResult})\n`;
     testCriteria.push(testDescription);
   });
+
+  if (customTests) {
+    customTests.forEach((test) => {
+      if (test.customVariables) {
+        test.customVariables.forEach((variable) => {
+          testsAsString += `${variable}\n`;
+        });
+      }
+
+      testsAsString += `testResults.push({ test: \`${test.testDescription}\`, passed: ${test.passed}, result: ${test.result}})`;
+      testCriteria.push(test.testDescription);
+    });
+  }
 
   testScriptCode += `${isEqualFunctionAsString}\n
   const runTests = () => {
