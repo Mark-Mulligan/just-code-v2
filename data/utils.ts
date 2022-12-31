@@ -1,4 +1,4 @@
-import { TestResult } from '../types/customTypes';
+import { TestResult, CustomTest } from '../types/customTypes';
 
 interface testUtilFunction {
   name: string;
@@ -57,13 +57,6 @@ const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
 };`;
 
 type ReturnTypes = 'string' | 'number' | 'array' | 'object' | 'boolean';
-
-interface CustomTest {
-  testDescription: string;
-  passed: string;
-  result: string;
-  customVariables?: string[];
-}
 
 export const generateTestScriptString = (
   funcName: string,

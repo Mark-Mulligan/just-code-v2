@@ -1,4 +1,4 @@
-import { NextParsedUrlQuery } from "next/dist/server/request-meta";
+import { NextParsedUrlQuery } from 'next/dist/server/request-meta';
 
 export type DifficultyLevel = 1 | 2 | 3; // 1 Easy, 2 Medium, 3 Hard
 
@@ -48,4 +48,11 @@ export interface AllCodingChallengesData {
 export interface UserSolution {
   completed_at: string;
   solution_code: string;
+}
+
+export interface CustomTest {
+  testDescription: string;
+  passed: string;
+  result: string;
+  customVariables?: string[];
 }
