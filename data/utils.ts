@@ -56,7 +56,7 @@ const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
   }
 };`;
 
-type ReturnTypes = 'string' | 'number' | 'array' | 'object';
+type ReturnTypes = 'string' | 'number' | 'array' | 'object' | 'boolean';
 
 export const generateTestScriptString = (
   funcName: string,
