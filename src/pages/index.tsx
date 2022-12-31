@@ -1,17 +1,20 @@
 // React
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 // Next
-import { type NextPage } from "next";
+import { type NextPage } from 'next';
 // import Head from "next/head";
 // import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 // Supabase
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 // React-icons
-import { BsGithub, BsGoogle } from "react-icons/bs";
+import { BsGithub, BsGoogle } from 'react-icons/bs';
+
+// Components
+import LoadingScreen from '../components/LoadingScreen';
 
 const Home: NextPage = () => {
   const session = useSession();
@@ -20,13 +23,13 @@ const Home: NextPage = () => {
 
   const signInWithGithub = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
+      provider: 'github',
     });
   };
 
   const signInWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
+      provider: 'google',
     });
 
     console.log(data, error);
@@ -34,8 +37,8 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (session) {
-      if (typeof window !== "undefined") {
-        router.push("/coding-challenges");
+      if (typeof window !== 'undefined') {
+        router.push('/coding-challenges');
       }
     }
   }, [session]);
@@ -63,9 +66,7 @@ const Home: NextPage = () => {
           </button>
         </div>
       ) : (
-        <div>
-          <p>Loading...</p>
-        </div>
+        <LoadingScreen loadingText="Loading..." />
       )}
     </div>
   );

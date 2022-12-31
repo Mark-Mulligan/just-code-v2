@@ -1,33 +1,34 @@
 // React
-import React, { useState, FC } from "react";
+import React, { useState, FC } from 'react';
 
 // Next
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // Supabase
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 // axios
-import axios from "axios";
+import axios from 'axios';
 
 // Resizable
-import { Resizable } from "re-resizable";
+import { Resizable } from 're-resizable';
 
 // Icons
-import { BsFillCheckCircleFill } from "react-icons/bs";
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 // Components
-import TestCriteriaList from "./TestCriteriaList";
-import TestResultsList from "./TestResultsList";
-import TestResultBadge from "./TestResultBadge";
+import TestCriteriaList from './TestCriteriaList';
+import TestResultsList from './TestResultsList';
+import TestResultBadge from './TestResultBadge';
+import LoadingScreen from './LoadingScreen';
 
 // Custom Types
 import {
   CodingChallengeData,
   TestResult,
   TestCodeRouteResponse,
-} from "../../types/customTypes";
+} from '../../types/customTypes';
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
@@ -45,7 +46,7 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
   const [testResults, setTestResults] = useState<TestResult[]>([]);
   const [numTestsPassed, setNumTestsPassed] = useState(0);
   const [isFetchingData, setIsFetchingData] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
@@ -55,7 +56,7 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
     }
 
     setIsFetchingData(true);
-    setErrorMessage("");
+    setErrorMessage('');
     const problemKey = router.query.problemKey;
 
     try {
@@ -65,9 +66,9 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       setTestResults(data.testResults);
       setNumTestsPassed(data.numTestsPassed);
 
-      if (data.overallResult === "passed" && typeof problemKey === "string") {
+      if (data.overallResult === 'passed' && typeof problemKey === 'string') {
         const { error, status } = await supabase
-          .from("completed_challenges")
+          .from('completed_challenges')
           .insert({
             problem_key: problemKey,
             user_id: user.id,
@@ -83,7 +84,7 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       } else {
         console.log(err);
         setErrorMessage(
-          "There was a server error while processing your code. Try again"
+          'There was a server error while processing your code. Try again'
         );
       }
     }
@@ -104,16 +105,9 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
         bottomLeft: false,
         topLeft: false,
       }}
-      defaultSize={{ width: 500, height: "auto" }}
+      defaultSize={{ width: 500, height: 'auto' }}
     >
-      {isFetchingData && (
-        <div className="fixed top-0 left-0 z-20 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-          <div>
-            <p className="text-center">Running Tests</p>
-            <progress className="progress progress-info h-1.5 w-56" />
-          </div>
-        </div>
-      )}
+      {isFetchingData && <LoadingScreen loadingText="Running Tests" />}
 
       {showModal && (
         <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
