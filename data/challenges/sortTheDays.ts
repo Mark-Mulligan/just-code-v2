@@ -1,8 +1,8 @@
 // Testing Utils
-import { createTestScriptString, extractTestCriteria } from '../utils';
+import { generateTestScriptString } from '../utils';
 
 // Custom Types
-import { TestResult, CodingChallengeData } from '../../types/customTypes';
+import { CodingChallengeData } from '../../types/customTypes';
 
 const sortTheDaysSolution = `const sortDays = (dayStr) => {
   // All possible day values in correct order
@@ -24,41 +24,19 @@ const sortTheDaysSolution = `const sortDays = (dayStr) => {
   return resultArr.join(',');
 }`;
 
-const sortDays = (inputStr: string) => {
-  return inputStr;
-};
-
-const sortTheDaysTests = () => {
-  const testResults: TestResult[] = [];
-  testResults.push({
-    test: 'User created a function called sortDays.',
-    passed: typeof sortDays === 'function',
-    result: typeof sortDays,
-  });
-  testResults.push({
-    test: 'Function returns a string',
-    passed: typeof sortDays('mon,wed,tues') === 'string',
-    result: typeof sortDays('mon,wed,tues'),
-  });
-  testResults.push({
-    test: 'sortDays("mon,wed,tues,sat") returns "mon,tues,wed,sat" ',
-    passed: sortDays('mon,wed,tues,sat') === 'mon,tues,wed,sat',
-    result: sortDays('mon,wed,tues,sat'),
-  });
-  testResults.push({
-    test: 'sortDays("sun,sat,fri,thurs,wed,tues,mon") returns "mon,tues,wed,thurs,fri,sat,sun"',
-    passed:
-      sortDays('sun,sat,fri,thurs,wed,tues,mon') ===
-      'mon,tues,wed,thurs,fri,sat,sun',
-    result: sortDays('sun,sat,fri,thurs,wed,tues,mon'),
-  });
-  testResults.push({
-    test: 'vowelCount("wed,tues,sat,fri") returns "tues,wed,fri,sat"',
-    passed: sortDays('wed,tues,sat,fri') === 'tues,wed,fri,sat',
-    result: sortDays('wed,tues,sat,fri'),
-  });
-  return testResults;
-};
+const { testCriteria, testScriptCode } = generateTestScriptString(
+  'sortDays',
+  'string',
+  [
+    { input: ['mon,wed,tues'], result: 'mon,tues,wed' },
+    { input: ['mon,wed,tues,sat'], result: 'mon,tues,wed,sat' },
+    {
+      input: ['sun,sat,fri,thurs,wed,tues,mon'],
+      result: 'mon,tues,wed,thurs,fri,sat,sun',
+    },
+    { input: ['wed,tues,sat,fri'], result: 'tues,wed,fri,sat' },
+  ]
+);
 
 const data: CodingChallengeData = {
   title: 'Sort The Days',
@@ -66,10 +44,10 @@ const data: CodingChallengeData = {
   instructions:
     "Create a function that takes in a string of days separated by commas (ex. 'mon,wed,tues').  Return a string of days sorted with Monday being the start of the week and sunday being the last. The possible values in the provided string are 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'.",
   difficulty: 2,
-  testScriptCode: createTestScriptString(sortTheDaysTests),
+  testScriptCode,
   startingCode:
     'const sortDays = (dayStr) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}',
-  testCriteria: extractTestCriteria(sortTheDaysTests()),
+  testCriteria,
   problemExplanation:
     'For this problem, you are given a comma separated string of abbreviated day values. You will need to sort these values and return the new sorted string. Note that for this problem, first value will be monday (not sunday which is the default in javascript). This problem will require several steps to complete and will require you to convert and format different data types.',
   hints: [
