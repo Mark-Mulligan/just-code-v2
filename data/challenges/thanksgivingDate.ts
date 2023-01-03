@@ -1,8 +1,12 @@
 // Testing Utils
-import { createTestScriptString, extractTestCriteria } from "../utils";
+import {
+  createTestScriptString,
+  extractTestCriteria,
+  generateTestScriptString,
+} from '../utils';
 
 // Custom Types
-import { TestResult, CodingChallengeData } from "../../types/customTypes";
+import { TestResult, CodingChallengeData } from '../../types/customTypes';
 
 const thanksgivingDateSolution = `const findThanksgivingDate = (year) => {
   let numberOfThursdays = 0;
@@ -47,60 +51,71 @@ const findThanksgivingDate = (year: number) => {
 const thanksgivingDateTests = () => {
   const testResults: TestResult[] = [];
   testResults.push({
-    test: "User created a function called findThanksgivingDate.",
-    passed: typeof findThanksgivingDate === "function",
+    test: 'User created a function called findThanksgivingDate.',
+    passed: typeof findThanksgivingDate === 'function',
     result: typeof findThanksgivingDate,
   });
   testResults.push({
-    test: "Function returns a date object",
+    test: 'Function returns a date object',
     passed:
       Object.prototype.toString.call(findThanksgivingDate(2022)) ===
-      "[object Date]",
+      '[object Date]',
     result: JSON.stringify(findThanksgivingDate(2022)),
   });
   testResults.push({
-    test: "findThanksgivingDate(2022) returns \n2022-11-24T06:00:00.000Z",
+    test: 'findThanksgivingDate(2022) returns \n2022-11-24T06:00:00.000Z',
     passed:
       findThanksgivingDate(2022)?.toDateString() ===
-      new Date("11-24-2022").toDateString(),
+      new Date('11-24-2022').toDateString(),
     result: JSON.stringify(findThanksgivingDate(2022)),
   });
   testResults.push({
-    test: "findThanksgivingDate(1980) returns \n 1980-11-27T06:00:00.000Z",
+    test: 'findThanksgivingDate(1980) returns \n 1980-11-27T06:00:00.000Z',
     passed:
       findThanksgivingDate(1980)?.toDateString() ===
-      new Date("11-27-1980").toDateString(),
+      new Date('11-27-1980').toDateString(),
     result: JSON.stringify(findThanksgivingDate(1980)),
   });
   testResults.push({
-    test: "findThanksgivingDate(1995) returns \n 1995-11-23T06:00:00.000Z",
+    test: 'findThanksgivingDate(1995) returns \n 1995-11-23T06:00:00.000Z',
     passed:
       findThanksgivingDate(1995)?.toDateString() ===
-      new Date("11-23-1995").toDateString(),
+      new Date('11-23-1995').toDateString(),
     result: JSON.stringify(findThanksgivingDate(1995)),
   });
   testResults.push({
-    test: "findThanksgivingDate(2030) returns \n2030-11-28T06:00:00.000Z",
+    test: 'findThanksgivingDate(2030) returns \n2030-11-28T06:00:00.000Z',
     passed:
       findThanksgivingDate(2030)?.toDateString() ===
-      new Date("11-28-2030").toDateString(),
+      new Date('11-28-2030').toDateString(),
     result: JSON.stringify(findThanksgivingDate(2030)),
   });
 
   return testResults;
 };
 
+const { testCriteria, testScriptCode } = generateTestScriptString(
+  'findThanksgivingDate',
+  'date',
+  [
+    { input: [2022], result: new Date('11-24-2022') },
+    { input: [1980], result: new Date('11-27-1980') },
+    { input: [1995], result: new Date('11-23-1995') },
+    { input: [2030], result: new Date('11-28-2030') },
+  ]
+);
+
 const data: CodingChallengeData = {
-  title: "Thanksgiving Date",
+  title: 'Thanksgiving Date',
   description:
-    "Create a function that returns the date that Thanksgiving will occur in a given year.",
+    'Create a function that returns the date that Thanksgiving will occur in a given year.',
   instructions:
-    "Create a function called findThanksgivingDate.  This function will take in a number (a target year), and return a date object representing the date Thanksgiving will occur that year. Thanksgiving always occurs on the fourth Thursday in November each year.",
+    'Create a function called findThanksgivingDate.  This function will take in a number (a target year), and return a date object representing the date Thanksgiving will occur that year. Thanksgiving always occurs on the fourth Thursday in November each year.',
   difficulty: 2,
-  testScriptCode: createTestScriptString(thanksgivingDateTests),
+  testScriptCode,
   startingCode:
-    "const findThanksgivingDate = (year) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",
-  testCriteria: extractTestCriteria(thanksgivingDateTests()),
+    'const findThanksgivingDate = (year) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}',
+  testCriteria,
   problemExplanation: `To solve this problem, you will need to create a date object given the year. You will also need to loop through the month of November to find the fourth Thursday in that month. Then you will need to return the corresponding date object.`,
   hints: [
     `Create a date object using the year and November 1st`,

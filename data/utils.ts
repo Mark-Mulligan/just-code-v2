@@ -56,7 +56,13 @@ const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
   }
 };`;
 
-type ReturnTypes = 'string' | 'number' | 'array' | 'object' | 'boolean';
+type ReturnTypes =
+  | 'string'
+  | 'number'
+  | 'array'
+  | 'object'
+  | 'boolean'
+  | 'date';
 
 export const generateTestScriptString = (
   funcName: string,
@@ -74,8 +80,15 @@ export const generateTestScriptString = (
       argsAsString = test.input.map((item) => JSON.stringify(item)).join(',');
     }
 
+    let resultAsString = '';
+
+    if (returnType === 'date') {
+      resultAsString = `new Date('${test.result}')`;
+    } else {
+      resultAsString = JSON.stringify(test.result);
+    }
+
     const functionCallString = `${funcName}(${argsAsString || ''})`;
-    const resultAsString = JSON.stringify(test.result);
 
     if (index === 0) {
       let testDescription = `User created a function called ${funcName}`;
@@ -86,6 +99,8 @@ export const generateTestScriptString = (
 
       if (returnType === 'array') {
         passed = `Array.isArray(${functionCallString})`;
+      } else if (returnType === 'date') {
+        passed = `${functionCallString} instanceof Date`;
       } else {
         passed = `typeof ${functionCallString} === "${returnType}"`;
       }
