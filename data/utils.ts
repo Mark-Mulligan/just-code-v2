@@ -83,7 +83,7 @@ export const generateTestScriptString = (
     let resultAsString = '';
 
     if (returnType === 'date') {
-      resultAsString = `new Date('${test.result}')`;
+      resultAsString = `${JSON.stringify(test.result)}`;
     } else {
       resultAsString = JSON.stringify(test.result);
     }
@@ -111,14 +111,30 @@ export const generateTestScriptString = (
         testDescription = `${functionCallString} returns a ${returnType}`;
       }
 
-      result = `typeof ${functionCallString}`;
+      if (returnType === 'date') {
+        result = `'${test.result}'`;
+      } else {
+        result = `typeof ${functionCallString}`;
+      }
+
       testsAsString += `testResults.push({ test: \`${testDescription}\`, passed: ${passed}, result: ${result}})\n`;
       testCriteria.push(testDescription);
     }
 
-    const testDescription = `${functionCallString} returns ${resultAsString}`;
-    const passed = `areEqual(${functionCallString}, ${resultAsString})`;
-    const result = `JSON.stringify(${functionCallString})`;
+    let passed = '';
+    let result = '';
+    let testDescription = '';
+
+    if (returnType === 'date') {
+      passed = `areEqual(${functionCallString}, new Date('${test.result}'))`;
+      result = `'${test.result}'`;
+      testDescription = `${functionCallString} returns ${test.result}`;
+    } else {
+      passed = `areEqual(${functionCallString}, ${resultAsString})`;
+      result = `JSON.stringify(${functionCallString})`;
+      testDescription = `${functionCallString} returns ${resultAsString}`;
+    }
+
     const testResult = `{ test: \`${testDescription}\`, passed: ${passed}, result: ${result}}`;
     testsAsString += `testResults.push(${testResult})\n`;
     testCriteria.push(testDescription);
