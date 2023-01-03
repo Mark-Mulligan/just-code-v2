@@ -1,8 +1,8 @@
 // Testing Utils
-import { createTestScriptString, extractTestCriteria } from "../utils";
+import { generateTestScriptString } from '../utils';
 
 // Custom Types
-import { TestResult, CodingChallengeData } from "../../types/customTypes";
+import { CodingChallengeData } from '../../types/customTypes';
 
 const ticTacToeSolution = `const ticTacToe = (gameboard) => {
   let result = 'tie';
@@ -53,136 +53,90 @@ const ticTacToeSolution = `const ticTacToe = (gameboard) => {
   return result;
 };`;
 
-const ticTacToe = (gameboard: string[][]) => {
-  return "";
-};
-
-const ticTackToeTests = () => {
-  const testResults: TestResult[] = [];
-  testResults.push({
-    test: "User created a function ticTacToe.",
-    passed: typeof ticTacToe === "function",
-    result: typeof ticTacToe,
-  });
-  testResults.push({
-    test: "Function returns a string.",
-    passed:
-      typeof ticTacToe([
-        ["X", "O", "O"],
-        ["O", "X", "X"],
-        ["X", "X", "O"],
-      ]) === "string",
-    result: typeof ticTacToe([
-      ["X", "O", "O"],
-      ["O", "X", "X"],
-      ["X", "X", "O"],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["X", "X", "X"], ["O", "O", "X"], ["X", "O", "O"]]) returns "X wins"',
-    passed:
-      ticTacToe([
-        ["X", "X", "X"],
-        ["O", "O", "X"],
-        ["X", "O", "O"],
-      ]) === "X wins",
-    result: ticTacToe([
-      ["X", "X", "X"],
-      ["O", "O", "X"],
-      ["X", "O", "O"],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["X", "O", "X"], ["O", "O", "X"], ["", "", "X"]]) returns "X wins"',
-    passed:
-      ticTacToe([
-        ["X", "O", "X"],
-        ["O", "O", "X"],
-        ["", "", "X"],
-      ]) === "X wins",
-    result: ticTacToe([
-      ["X", "O", "X"],
-      ["O", "O", "X"],
-      ["", "", "X"],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["X", "X", "O"], ["X", "O", ""], ["O", "", ""]]) returns "O wins"',
-    passed:
-      ticTacToe([
-        ["X", "X", "O"],
-        ["X", "O", ""],
-        ["O", "", ""],
-      ]) === "O wins",
-    result: ticTacToe([
-      ["X", "X", "O"],
-      ["X", "O", ""],
-      ["O", "", ""],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["O", "X", "X"], ["", "O", ""], ["X", "", "O"]]) returns "O wins"',
-    passed:
-      ticTacToe([
-        ["O", "X", "X"],
-        ["", "O", ""],
-        ["X", "", "O"],
-      ]) === "O wins",
-    result: ticTacToe([
-      ["O", "X", "X"],
-      ["", "O", ""],
-      ["X", "", "O"],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["X", "", "O"], ["X", "O", ""], ["X", "O", "X"]]) returns "X wins"',
-    passed:
-      ticTacToe([
-        ["X", "", "O"],
-        ["X", "O", ""],
-        ["X", "O", "X"],
-      ]) === "X wins",
-    result: ticTacToe([
-      ["X", "", "O"],
-      ["X", "O", ""],
-      ["X", "O", "X"],
-    ]),
-  });
-  testResults.push({
-    test: 'ticTacToe([["X", "O", "O"], ["O", "X", "X"], ["X", "X", "O"]]) returns "tie"',
-    passed:
-      ticTacToe([
-        ["X", "O", "O"],
-        ["O", "X", "X"],
-        ["X", "X", "O"],
-      ]) === "tie",
-    result: ticTacToe([
-      ["X", "O", "O"],
-      ["O", "X", "X"],
-      ["X", "X", "O"],
-    ]),
-  });
-
-  return testResults;
-};
+const { testCriteria, testScriptCode } = generateTestScriptString(
+  'ticTacToe',
+  'string',
+  [
+    {
+      input: [
+        [
+          ['X', 'X', 'X'],
+          ['O', 'O', 'X'],
+          ['X', 'O', 'O'],
+        ],
+      ],
+      result: 'X wins',
+    },
+    {
+      input: [
+        [
+          ['X', 'O', 'X'],
+          ['O', 'O', 'X'],
+          ['', '', 'X'],
+        ],
+      ],
+      result: 'X wins',
+    },
+    {
+      input: [
+        [
+          ['X', 'X', 'O'],
+          ['X', 'O', ''],
+          ['O', '', ''],
+        ],
+      ],
+      result: 'O wins',
+    },
+    {
+      input: [
+        [
+          ['O', 'X', 'X'],
+          ['', 'O', ''],
+          ['X', '', 'O'],
+        ],
+      ],
+      result: 'O wins',
+    },
+    {
+      input: [
+        [
+          ['X', '', 'O'],
+          ['X', 'O', ''],
+          ['X', 'O', 'X'],
+        ],
+      ],
+      result: 'X wins',
+    },
+    {
+      input: [
+        [
+          ['X', 'O', 'O'],
+          ['O', 'X', 'X'],
+          ['X', 'X', 'O'],
+        ],
+      ],
+      result: 'tie',
+    },
+  ]
+);
 
 const data: CodingChallengeData = {
-  title: "Tic-Tac-Toe",
+  title: 'Tic-Tac-Toe',
   description:
-    "Create a function that determines the winner (if there is one) in a game of tic-tac-toe.",
+    'Create a function that determines the winner (if there is one) in a game of tic-tac-toe.',
   instructions:
     'Create a function that takes in an array which contains three arrays (each array within the array represents one row of the tic-tac-toe board).  Using these arrays determine the winner or if the game was a tie. If X wins, return "X wins".  If O wins return "O wins".  If the game was a tie, return "tie". Note, values in the arrays can be "X", "O" or ""',
   difficulty: 3,
-  testScriptCode: createTestScriptString(ticTackToeTests),
+  testScriptCode,
   startingCode:
-    "const ticTacToe = (gameBoard) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}",
-  testCriteria: extractTestCriteria(ticTackToeTests()),
+    'const ticTacToe = (gameboard) => {\n  // Add Code Below\n\n\n  // Add Code Above\n}',
+  testCriteria,
   problemExplanation:
-    "Given an array of arrays that represent a tic tac toe game board, write a function that determines the winner or if there is a tie.",
+    'Given an array of arrays that represent a tic tac toe game board, write a function that determines the winner or if there is a tie.',
   hints: [
-    "Tic tac toe can be won in 3 different ways, 3 in row, 3 in a column, or 3 diagonally.",
-    "You will need to iterate though the arrays in different orders to look for either X to win or O to win",
-    "If you use nested for loops, you can change the index values (e.g. gameBoard[firstIndexValue][secondIndexValue]) to iterate over the game board in different ways",
+    'Tic tac toe can be won in 3 different ways, 3 in row, 3 in a column, or 3 diagonally.',
+    'You will need to iterate though the arrays in different orders to look for either X to win or O to win',
+    'If you use nested for loops, you can change the index values (e.g. gameBoard[firstIndexValue][secondIndexValue]) to iterate over the game board in different ways',
   ],
   solutionCode: ticTacToeSolution,
 };
