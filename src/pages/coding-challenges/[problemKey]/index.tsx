@@ -1,26 +1,29 @@
 // React
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // Next
-import { NextPage } from "next";
-import { GetServerSideProps } from "next";
+import type { NextPage } from 'next';
+import type { GetServerSideProps } from 'next';
 
 // Supabase
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Session, User } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import type { Session, User } from '@supabase/auth-helpers-nextjs';
 
 // Code Mirror
-import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 
 // Data
-import { codingChallengesData } from "../../../../data/codingChallengeData";
+import { codingChallengesData } from '../../../../data/codingChallengeData';
 
 // Components
-import CodingChallengeInfoPanel from "../../../components/CodingChallengeInfoPanel";
+import CodingChallengeInfoPanel from '../../../components/CodingChallengeInfoPanel';
 
 // Custom Types
-import { IParams, CodingChallengeData } from "../../../../types/customTypes";
+import type {
+  IParams,
+  CodingChallengeData,
+} from '../../../../types/customTypes';
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
@@ -30,7 +33,7 @@ interface IProps {
 
 const CodingExercise: NextPage<IProps> = ({ codingChallengeData }) => {
   const [userCode, setUserCode] = useState(
-    codingChallengeData?.startingCode || ""
+    codingChallengeData?.startingCode || ''
   );
 
   return (
@@ -41,14 +44,14 @@ const CodingExercise: NextPage<IProps> = ({ codingChallengeData }) => {
       />
       <div
         className="w-full overflow-auto pt-4"
-        style={{ background: "#282c34" }}
+        style={{ background: '#282c34' }}
       >
         <CodeMirror
-          theme={"dark"}
+          theme={'dark'}
           value={userCode}
           height="auto"
           extensions={[javascript({ jsx: true })]}
-          onChange={(value, viewUpdate) => {
+          onChange={(value) => {
             setUserCode(value);
           }}
         />
@@ -71,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session)
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };

@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Node FS
-import fs from 'fs';
+// import fs from 'fs';
 
 // VM2
 import { VM } from 'vm2';
@@ -11,7 +11,7 @@ import { VM } from 'vm2';
 import { codingChallengesData } from '../../../../data/codingChallengeData';
 
 // Custom Types
-import { TestResult } from '../../../../types/customTypes';
+import type { TestResult } from '../../../../types/customTypes';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const vm = new VM({ timeout: 1000, sandbox: {} });
@@ -20,7 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { userCode } = req.body;
 
-    let codingChallengeData = codingChallengesData[testname];
+    const codingChallengeData = codingChallengesData[testname];
 
     if (!codingChallengeData) {
       res.status(404);
@@ -28,8 +28,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // get test script to add to user input
-    let testScriptCode = codingChallengeData.testScriptCode;
-    let testResults = [] as TestResult[];
+    const testScriptCode = codingChallengeData.testScriptCode;
+    let testResults: TestResult[] = [];
 
     // for developer de-bugging purposes
     // Don't remove but also don't push to prod.  It will break in prod environment
@@ -38,11 +38,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       testResults = vm.run(`${userCode}\n${testScriptCode}`);
-    } catch (err: any) {
+    } catch (err) {
+      let message;
+      if (err instanceof Error) message = err.message;
+      else message = String(err);
       // console.log('err', err);
-      res
-        .status(400)
-        .json({ message: `${err.message}. Code failed to compile.` });
+      res.status(400).json({ message: `${message}. Code failed to compile.` });
       return;
     }
 

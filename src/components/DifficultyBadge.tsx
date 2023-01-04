@@ -1,8 +1,8 @@
 // React
-import { FC } from "react";
+import type { FC } from 'react';
 
 // Custom Types
-import { DifficultyLevel } from "../../types/customTypes";
+import type { DifficultyLevel } from '../../types/customTypes';
 
 interface IProps {
   difficulty: DifficultyLevel;

@@ -1,14 +1,14 @@
 // React
-import { FC } from "react";
+import type { FC } from 'react';
 
 // Next
-import Link from "next/link";
+import Link from 'next/link';
 
 // Components
-import DifficultyBadge from "./DifficultyBadge";
+import DifficultyBadge from './DifficultyBadge';
 
 // Custom Types
-import { DifficultyLevel } from "../../types/customTypes";
+import type { DifficultyLevel } from '../../types/customTypes';
 
 interface IProps {
   name: string;

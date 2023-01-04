@@ -163,12 +163,6 @@ export const generateTestScriptString = (
   return { testScriptCode, testCriteria };
 };
 
-export const extractTestCriteria = (testLogic: TestResult[]) => {
-  return testLogic.map((testResult) => {
-    return testResult.test;
-  });
-};
-
 export const deepEqual = (
   obj1: { [key: string]: any },
   obj2: { [key: string]: any }

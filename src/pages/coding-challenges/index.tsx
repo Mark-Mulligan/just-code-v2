@@ -1,19 +1,19 @@
 // Next
-import { GetServerSideProps } from "next";
-import { NextPage } from "next";
+import type { GetServerSideProps } from 'next';
+import type { NextPage } from 'next';
 
 // Supabase
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Session, User } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import type { Session, User } from '@supabase/auth-helpers-nextjs';
 
 // Coding Challenge Data
-import { codingChallengesData } from "../../../data/codingChallengeData";
+import { codingChallengesData } from '../../../data/codingChallengeData';
 
 // Components
-import CodingChallengeCard from "../../components/CodingChallengeCard";
+import CodingChallengeCard from '../../components/CodingChallengeCard';
 
 // Custom Types
-import { AllCodingChallengesData } from "../../../types/customTypes";
+import type { AllCodingChallengesData } from '../../../types/customTypes';
 
 interface IProps {
   codingChallengeOverviews: AllCodingChallengesData;
@@ -62,21 +62,25 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session)
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };
 
   const completedChallenges: string[] = [];
   const { data, error, status } = await supabase
-    .from("completed_challenges")
-    .select("*")
-    .eq("user_id", session.user.id);
+    .from('completed_challenges')
+    .select('*')
+    .eq('user_id', session.user.id);
+
+  if (error) {
+    console.log(error);
+  }
 
   if (data && status === 200) {
     for (let i = 0; i < data.length; i++) {
-      if (!completedChallenges.includes(data[i]["problem_key"])) {
-        completedChallenges.push(data[i]["problem_key"]);
+      if (!completedChallenges.includes(data[i]['problem_key'])) {
+        completedChallenges.push(data[i]['problem_key']);
       }
     }
   }

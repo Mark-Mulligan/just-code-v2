@@ -1,15 +1,15 @@
 // React
-import { FC } from "react";
+import type { FC } from 'react';
 
 // uuid
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 // React icons
-import { BsCheckLg } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
+import { BsCheckLg } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/ai';
 
 // Custom Types
-import { TestResult } from "../../types/customTypes";
+import type { TestResult } from '../../types/customTypes';
 
 interface IProps {
   testResults: TestResult[];

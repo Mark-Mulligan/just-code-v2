@@ -1,5 +1,5 @@
 // React
-import React, { useState, FC } from 'react';
+import React, { useState, type FC } from 'react';
 
 // Next
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 // axios
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 
 // Resizable
 import { Resizable } from 're-resizable';
@@ -24,11 +24,7 @@ import TestResultBadge from './TestResultBadge';
 import LoadingScreen from './LoadingScreen';
 
 // Custom Types
-import {
-  CodingChallengeData,
-  TestResult,
-  TestCodeRouteResponse,
-} from '../../types/customTypes';
+import type { CodingChallengeData, TestResult } from '../../types/customTypes';
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
@@ -67,18 +63,20 @@ const CodingChallengeInfoPanel: FC<IProps> = ({
       setNumTestsPassed(data.numTestsPassed);
 
       if (data.overallResult === 'passed' && typeof problemKey === 'string') {
-        const { error, status } = await supabase
-          .from('completed_challenges')
-          .insert({
-            problem_key: problemKey,
-            user_id: user.id,
-            solution_code: userCode,
-          });
+        const { error } = await supabase.from('completed_challenges').insert({
+          problem_key: problemKey,
+          user_id: user.id,
+          solution_code: userCode,
+        });
+
+        if (error) {
+          console.log(error);
+        }
 
         setShowModal(true);
       }
-    } catch (err: any) {
-      if (err.response.status === 400) {
+    } catch (err) {
+      if (isAxiosError(err) && err.response && err.response.status === 400) {
         setErrorMessage(err.response.data.message);
         setTestResults([]);
       } else {

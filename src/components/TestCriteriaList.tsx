@@ -1,8 +1,8 @@
 // React
-import { FC } from "react";
+import type { FC } from 'react';
 
 // uuid
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {
   testCriteria: string[];

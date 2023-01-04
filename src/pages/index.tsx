@@ -22,17 +22,15 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const signInWithGithub = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: 'github',
     });
   };
 
   const signInWithGoogle = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: 'google',
     });
-
-    console.log(data, error);
   };
 
   useEffect(() => {
@@ -41,7 +39,7 @@ const Home: NextPage = () => {
         router.push('/coding-challenges');
       }
     }
-  }, [session]);
+  }, [session, router]);
 
   return (
     <div className="container mx-auto">

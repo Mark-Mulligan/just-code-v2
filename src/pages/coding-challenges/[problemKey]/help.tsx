@@ -2,8 +2,7 @@
 import { useState } from 'react';
 
 // Next
-import { NextPage } from 'next';
-import { GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
 // Supabase
@@ -24,12 +23,12 @@ import { format } from 'date-fns';
 import { codingChallengesData } from '../../../../data/codingChallengeData';
 
 // Custom Types
-import {
+import type {
   IParams,
   CodingChallengeData,
   UserSolution,
 } from '../../../../types/customTypes';
-import { Database } from '../../../../types/database';
+import type { Database } from '../../../../types/database';
 
 interface IProps {
   codingChallengeData: CodingChallengeData;
@@ -39,7 +38,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
   const supabase = useSupabaseClient<Database>();
   const router = useRouter();
   const [showSolution, setShowSolution] = useState(false);
-  const [userSolutions, setUserSolutions] = useState<any>([]);
+  const [userSolutions, setUserSolutions] = useState<UserSolution[]>([]);
   const [userSolutionsCount, setUserSolutionsCount] = useState(0);
   const [currentRange, setCurrentRange] = useState({ from: 0, to: 9 });
 
@@ -80,7 +79,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
         ? currentRange.to + 10
         : userSolutionsCount;
 
-    let newRange = { from, to };
+    const newRange = { from, to };
     const result = await getUserSolutions(newRange.from, newRange.to);
 
     if (!result) {
