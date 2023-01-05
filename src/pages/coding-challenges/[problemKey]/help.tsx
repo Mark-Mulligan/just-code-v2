@@ -113,7 +113,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
       <section>
         <h2 className="mb-2 text-2xl font-bold">Solution</h2>
         {showSolution ? (
-          <div className="mb-4">
+          <div className="mb-8">
             <CodeMirror
               theme={'dark'}
               value={codingChallengeData.solutionCode}
@@ -134,7 +134,7 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
             <ul>
               {userSolutions.map((solution: UserSolution) => {
                 return (
-                  <li className="mb-4" key={solution.completed_at}>
+                  <li className="mb-8" key={solution.completed_at}>
                     <h4 className="mb-1">
                       Submitted:{' '}
                       {format(new Date(solution.completed_at), 'MM/dd/yyyy')} at{' '}
