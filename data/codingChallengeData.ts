@@ -10,6 +10,7 @@ import findTheIndex from './challenges/findTheIndex';
 import findTheTotalLength from './challenges/findTheTotalLength';
 import divideAndRound from './challenges/divideAndRound';
 import largestResult from './challenges/largestResult';
+import wordCount from './challenges/wordCount';
 import reverseString from './challenges/reverseString';
 import largestNumInArr from './challenges/largestNumInArr';
 import checkForDuplicates from './challenges/checkForDuplicates';
@@ -55,6 +56,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   'find-the-total-length': findTheTotalLength,
   'divide-and-round': divideAndRound,
   'largest-num-in-array': largestNumInArr,
+  'word-count': wordCount,
   'reverse-string': reverseString,
   'check-for-duplicates': checkForDuplicates,
   'largest-result': largestResult,
