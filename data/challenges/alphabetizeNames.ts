@@ -19,6 +19,7 @@ const alphabetizeNamesSolution = `const alphabetizeNames = (nameList, sortBy) =>
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'alphabetizeNames',
   'array',
+  'areEqual',
   [
     {
       input: [

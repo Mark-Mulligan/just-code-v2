@@ -25,6 +25,7 @@ const luckyNumberThreeSolution = `const hasThreeRepeatingValues = (arr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'hasThreeRepeatingValues',
   'boolean',
+  'areEqual',
   [
     { input: [[1, 2, 3, 4, 5, 4, 3, 2, 1, 1]], result: true },
     { input: [[10, 12, 12, 10, 90, 9, 87, 90]], result: false },

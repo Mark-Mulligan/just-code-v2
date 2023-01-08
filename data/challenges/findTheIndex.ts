@@ -23,6 +23,7 @@ const tests = [
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'findIndex',
   'number',
+  'areEqual',
   tests
 );
 

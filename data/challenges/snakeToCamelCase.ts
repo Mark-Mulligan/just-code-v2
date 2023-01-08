@@ -11,6 +11,7 @@ const snakeToCamelSolution = `const snakeToCamel = (str) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'snakeToCamel',
   'string',
+  'areEqual',
   [
     { input: ['python_style'], result: 'pythonStyle' },
     { input: ['did_you_use_regex'], result: 'didYouUseRegex' },

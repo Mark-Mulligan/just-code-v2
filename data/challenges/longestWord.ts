@@ -21,6 +21,7 @@ export const longestWordSolution = `const longestWord = (sentence) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'longestWord',
   'string',
+  'areEqual',
   [
     { input: ['This is a test sentence.'], result: 'sentence' },
     { input: ['Batman is my favorite movie!'], result: 'favorite' },

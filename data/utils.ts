@@ -20,7 +20,7 @@ export const createTestScriptString = (
   return resultStr;
 };
 
-const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
+const areEqualFunctionAsString = `function areEqual(arg1, arg2) {
   if (
     (arg1 === null && arg2 === null) ||
     (arg1 === undefined && arg2 === undefined)
@@ -56,6 +56,23 @@ const isEqualFunctionAsString = `function areEqual(arg1, arg2) {
   }
 };`;
 
+const arraysHaveSameValues = `function arraysHaveSameValues(arr1, arr2) {
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    return false;
+  }
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  const sorted1 = arr1.sort();
+  const sorted2 = arr2.sort();
+  for (let i = 0; i < sorted1.length; i++) {
+    if (!areEqual(sorted1[i], sorted2[i])) {
+      return false;
+    }
+  }
+  return true;
+}`;
+
 type ReturnTypes =
   | 'string'
   | 'number'
@@ -67,6 +84,7 @@ type ReturnTypes =
 export const generateTestScriptString = (
   funcName: string,
   returnType: ReturnTypes,
+  comparisonFunction: 'areEqual' | 'arraysHaveSameValues',
   tests: { input?: any[]; result: any }[],
   customTests?: CustomTest[]
 ) => {
@@ -126,11 +144,11 @@ export const generateTestScriptString = (
     let testDescription = '';
 
     if (returnType === 'date') {
-      passed = `areEqual(${functionCallString}, new Date('${test.result}'))`;
+      passed = `${comparisonFunction}(${functionCallString}, new Date('${test.result}'))`;
       result = `'${test.result}'`;
       testDescription = `${functionCallString} returns ${test.result}`;
     } else {
-      passed = `areEqual(${functionCallString}, ${resultAsString})`;
+      passed = `${comparisonFunction}(${functionCallString}, ${resultAsString})`;
       result = `JSON.stringify(${functionCallString})`;
       testDescription = `${functionCallString} returns ${resultAsString}`;
     }
@@ -153,7 +171,7 @@ export const generateTestScriptString = (
     });
   }
 
-  testScriptCode += `${isEqualFunctionAsString}\n
+  testScriptCode += `${areEqualFunctionAsString}\n${arraysHaveSameValues}\n
   const runTests = () => {
     const testResults = [];
     ${testsAsString}

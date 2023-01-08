@@ -5,7 +5,7 @@ import { generateTestScriptString } from '../utils';
 import { CodingChallengeData } from '../../types/customTypes';
 
 const sortTheDatesSolution = `const sortDates = (inputArrDateStrings) => {
-  return inputArrDateStrs.sort((a, b) => {
+  return inputArrDateStrings.sort((a, b) => {
     return new Date(a) - new Date(b);
   });
 };`;
@@ -13,6 +13,7 @@ const sortTheDatesSolution = `const sortDates = (inputArrDateStrings) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'sortDates',
   'array',
+  'areEqual',
   [
     {
       input: [['12-2-2020', '12-3-2020', '5-3-2020']],

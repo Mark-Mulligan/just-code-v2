@@ -11,6 +11,7 @@ const objectArrayDeleteSolution = `const deleteOne = (objArray, targetKey, targe
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'deleteOne',
   'array',
+  'areEqual',
   [
     {
       input: [

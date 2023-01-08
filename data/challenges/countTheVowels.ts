@@ -24,6 +24,7 @@ const countTheVowelsSolution = `const vowelCount = (str) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'vowelCount',
   'number',
+  'areEqual',
   [
     { input: ['This is a test sentence.'], result: 7 },
     {

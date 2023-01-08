@@ -13,6 +13,7 @@ const rockPaperScissorsSolution = `const rockPaperScissors = (turn) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'rockPaperScissors',
   'string',
+  'areEqual',
   [
     { input: ['rock'], result: 'paper' },
     { input: ['paper'], result: 'scissors' },

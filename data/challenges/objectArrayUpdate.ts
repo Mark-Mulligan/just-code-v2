@@ -23,6 +23,7 @@ const objectArrayUpdateSolution = `const update = (objArray, id, updatePropertie
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'update',
   'array',
+  'areEqual',
   [
     {
       input: [

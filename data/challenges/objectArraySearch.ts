@@ -13,6 +13,7 @@ const objectArraySearchSolution = `const findOne = (objArray, targetKey, targetV
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'findOne',
   'object',
+  'areEqual',
   [
     {
       input: [

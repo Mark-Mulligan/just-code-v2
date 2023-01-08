@@ -11,6 +11,7 @@ const findTheTotalLengthSolution = `const totalLength = (strArr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'totalLength',
   'number',
+  'areEqual',
   [
     { input: [['this', 'is', 'a', 'test']], result: 11 },
     { input: [['Somebody', 'once', 'told', 'me']], result: 18 },

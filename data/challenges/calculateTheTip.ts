@@ -15,6 +15,7 @@ const calculateTheTipSolution = `const tipCalc = (mealPrice, tipPercent) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'tipCalc',
   'string',
+  'areEqual',
   [
     { input: ['$25.97', '20%'], result: '$5.19' },
     { input: ['$43.28', '21%'], result: '$9.09' },

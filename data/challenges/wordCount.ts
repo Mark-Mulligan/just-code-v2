@@ -11,6 +11,7 @@ const sumTwoIntSolution = `const wordCount = (inputStr) => {
 const { testScriptCode, testCriteria } = generateTestScriptString(
   'wordCount',
   'number',
+  'areEqual',
   [
     { input: ['Here is a test string.'], result: 5 },
     {

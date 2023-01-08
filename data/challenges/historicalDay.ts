@@ -15,6 +15,7 @@ const historicalDaySolution = `const findDay = (dateStr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'findDay',
   'string',
+  'areEqual',
   [
     { input: ['10-19-1987'], result: 'Monday' },
     { input: ['05-25-1977'], result: 'Wednesday' },

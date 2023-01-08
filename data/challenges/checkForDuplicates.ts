@@ -19,6 +19,7 @@ const checkForDuplicatesSolution = `hasDuplicateValues = (arr) => {
 const { testScriptCode, testCriteria } = generateTestScriptString(
   'hasDuplicateValues',
   'boolean',
+  'areEqual',
   [
     { input: [[1, 2, 3, 4, 5, 1]], result: true },
     { input: [[10, 12, 31, 4, 25, -3]], result: false },

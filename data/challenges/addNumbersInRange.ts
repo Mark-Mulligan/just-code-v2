@@ -16,6 +16,7 @@ const addNumbersInRangeSolution = `const addNumbersInRange = (startingNum, endin
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'addNumbersInRange',
   'number',
+  'areEqual',
   [
     { input: [1, 5], result: 15 },
     { input: [5, 10], result: 45 },

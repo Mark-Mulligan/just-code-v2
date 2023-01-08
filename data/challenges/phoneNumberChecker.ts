@@ -18,6 +18,7 @@ const phoneNumberCheckerSolution = `const validPhoneNum = (phoneNum) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'validPhoneNum',
   'boolean',
+  'areEqual',
   [
     { input: ['781-548-9900'], result: true },
     { input: ['781891-1234'], result: false },

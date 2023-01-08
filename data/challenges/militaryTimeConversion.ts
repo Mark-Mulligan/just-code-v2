@@ -31,6 +31,7 @@ const militaryTimeConversionSolution = `const militaryTimeConverter = (timeStr) 
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'militaryTimeConverter',
   'string',
+  'areEqual',
   [
     { input: ['22:33:06'], result: '10:33:06 PM' },
     { input: ['08:15:27'], result: '8:15:27 AM' },

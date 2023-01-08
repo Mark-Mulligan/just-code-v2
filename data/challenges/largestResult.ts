@@ -33,6 +33,7 @@ const largestResultSolution = `const largestResult = (num1, num2) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'largestResult',
   'number',
+  'areEqual',
   [
     { input: [1, 2], result: 3 },
     { input: [3, 0.5], result: 6 },

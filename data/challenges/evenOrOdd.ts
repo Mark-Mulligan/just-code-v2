@@ -11,6 +11,7 @@ const evenOrOddSolution = `const evenOrOdd = (num) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'evenOrOdd',
   'string',
+  'areEqual',
   [
     { input: [11], result: 'odd' },
     { input: [30], result: 'even' },

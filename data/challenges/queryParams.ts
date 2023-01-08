@@ -25,6 +25,7 @@ const queryParametersSolution = `const extractQueryParams = (urlStr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'extractQueryParams',
   'object',
+  'areEqual',
   [
     {
       input: ['https://example?search=test&length=3'],

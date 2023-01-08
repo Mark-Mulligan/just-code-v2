@@ -11,6 +11,7 @@ export const reverseStringSolution = `const reverseStr = (str) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'reverseStr',
   'string',
+  'areEqual',
   [
     { input: ['test'], result: 'tset' },
     { input: ['Hello World'], result: 'dlroW olleH' },

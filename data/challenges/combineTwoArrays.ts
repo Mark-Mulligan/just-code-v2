@@ -36,6 +36,7 @@ const customTests: CustomTest[] = [
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'combineArrs',
   'array',
+  'areEqual',
   [
     {
       input: [

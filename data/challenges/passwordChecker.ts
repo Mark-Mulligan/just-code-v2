@@ -7,10 +7,10 @@ import { CodingChallengeData } from '../../types/customTypes';
 const passwordCheckerSolution = `const isStrongPassword = (password) => {
   if (password.length < 12) return false;
 
-  const lowercase = /[a-z]/;
-  const uppercase = /[A-Z]/;
-  const numbers = /[0-9]/;
-  const specialCharacters = /\W|_/;
+  const lowercase = ${/[a-z]/};
+  const uppercase =${/[A-Z]/};
+  const numbers = ${/[0-9]/};
+  const specialCharacters =${/\W|_/};
 
   if (!lowercase.test(password)) return false;
   if (!uppercase.test(password)) return false;
@@ -23,6 +23,7 @@ const passwordCheckerSolution = `const isStrongPassword = (password) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'isStrongPassword',
   'boolean',
+  'areEqual',
   [
     { input: ['StrongP@ssw0rd'], result: true },
     { input: ['weakPassword1'], result: false },

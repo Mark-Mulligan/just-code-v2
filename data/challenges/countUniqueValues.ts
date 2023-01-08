@@ -21,6 +21,7 @@ const countUniqueValuesSolution = `const countUnique = (arr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'countUnique',
   'object',
+  'areEqual',
   [
     {
       input: [[1, 2, 1, 3, 4, 3, 3]],

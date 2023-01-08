@@ -11,6 +11,7 @@ const sortArrayIntsSolution = `const sortArr = (numArr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'sortArr',
   'array',
+  'areEqual',
   [
     { input: [[1, 4, 3, 2]], result: [1, 2, 3, 4] },
     { input: [[1, 2, 6, 4, 2]], result: [1, 2, 2, 4, 6] },

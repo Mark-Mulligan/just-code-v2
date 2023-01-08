@@ -15,6 +15,7 @@ const primeNumberCheckSolution = `const isPrime = (num) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'isPrime',
   'boolean',
+  'areEqual',
   [
     { input: [29], result: true },
     { input: [32], result: false },

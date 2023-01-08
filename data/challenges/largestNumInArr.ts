@@ -19,6 +19,7 @@ const largestNumInArrSolution = `const largestNum = (numArr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'largestNum',
   'number',
+  'areEqual',
   [
     { input: [[1, 2, 3, 4]], result: 4 },
     { input: [[1, 8, 10, 5, 12]], result: 12 },

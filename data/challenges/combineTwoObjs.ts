@@ -26,6 +26,7 @@ const customTests: CustomTest[] = [
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'combineTwoObjs',
   'object',
+  'areEqual',
   [
     {
       input: [{ state: 'TX', address: '1234 Storyboard ln' }, { zip: '12345' }],

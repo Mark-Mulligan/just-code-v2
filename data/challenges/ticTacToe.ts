@@ -56,6 +56,7 @@ const ticTacToeSolution = `const ticTacToe = (gameboard) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'ticTacToe',
   'string',
+  'areEqual',
   [
     {
       input: [

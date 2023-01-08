@@ -23,6 +23,7 @@ const compareTwoObjsSolution = `const compareObjs = (obj1, obj2) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'compareObjs',
   'boolean',
+  'areEqual',
   [
     { input: [{ name: 'test' }, { name: 'test' }], result: true },
     {

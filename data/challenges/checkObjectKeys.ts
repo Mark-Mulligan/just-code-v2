@@ -11,6 +11,7 @@ const checkObjectKeysSolution = `const hasKey = (obj, targetKey) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'hasKey',
   'boolean',
+  'areEqual',
   [
     {
       input: [{ firstName: 'Mark', lastName: 'Mulligan' }, 'firstName'],

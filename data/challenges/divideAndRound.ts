@@ -11,6 +11,7 @@ const divideAndRoundSolution = `const divide = (num1, num2) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'divide',
   'number',
+  'areEqual',
   [
     { input: [2, 1], result: 2 },
     { input: [9, 7], result: 1.29 },

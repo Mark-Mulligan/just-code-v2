@@ -27,6 +27,7 @@ const sortTheDaysSolution = `const sortDays = (dayStr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'sortDays',
   'string',
+  'areEqual',
   [
     { input: ['mon,wed,tues'], result: 'mon,tues,wed' },
     { input: ['mon,wed,tues,sat'], result: 'mon,tues,wed,sat' },

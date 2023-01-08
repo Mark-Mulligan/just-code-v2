@@ -33,6 +33,7 @@ import calculateTheTip from './challenges/calculateTheTip';
 import historicalDay from './challenges/historicalDay';
 import objectArrayDelete from './challenges/objectArrayDelete';
 import queryParams from './challenges/queryParams';
+import knightMovement from './challenges/knightMovement';
 import largestSum from './challenges/largestSum';
 import primeNumberCheck from './challenges/primeNumberCheck';
 import sortTheDates from './challenges/sortTheDates';
@@ -77,6 +78,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   'historical-day': historicalDay,
   'object-array-delete': objectArrayDelete,
   'query-params': queryParams,
+  'knight-movement': knightMovement,
   'largest-sum': largestSum,
   'prime-number-check': primeNumberCheck,
   'sort-the-dates': sortTheDates,

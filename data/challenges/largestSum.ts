@@ -23,6 +23,7 @@ const largestSumSolution = `const largestSum = (numberArr) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'largestSum',
   'object',
+  'areEqual',
   [
     { input: [[1, 2, 3]], result: { largestSum: 5, indexes: [1, 2] } },
     {

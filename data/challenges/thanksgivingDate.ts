@@ -27,6 +27,7 @@ const thanksgivingDateSolution = `const findThanksgivingDate = (year) => {
 const { testCriteria, testScriptCode } = generateTestScriptString(
   'findThanksgivingDate',
   'date',
+  'areEqual',
   [
     { input: [2022], result: new Date('11-24-2022') },
     { input: [1980], result: new Date('11-27-1980') },
