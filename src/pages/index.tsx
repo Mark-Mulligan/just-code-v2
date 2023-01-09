@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 // Next
 import { type NextPage } from 'next';
-// import Head from "next/head";
+import Head from 'next/head';
 // import Link from "next/link";
 import { useRouter } from 'next/router';
 
@@ -60,31 +60,55 @@ const Home: NextPage = () => {
   }, [session, router]);
 
   return (
-    <div className="container mx-auto">
-      {!session ? (
-        <div className="card mx-auto mt-16 max-w-lg bg-base-300 px-10 py-16 shadow-xl">
-          <h1 className="mb-4 text-center text-5xl font-bold">Just Code</h1>
-          <p className="text-center font-light">
-            Straight forward javascript challenges to help you level up your
-            coding skills.
-          </p>
-          <div className="divider" />
-          <button
-            onClick={signInWithGithub}
-            className="btn-block btn mb-3 gap-2"
-          >
-            <BsGithub size={20} />
-            Sign In With Github
-          </button>
-          <button onClick={signInWithGoogle} className="btn-block btn gap-2">
-            <BsGoogle size={20} />
-            Sign In With Google
-          </button>
-        </div>
-      ) : (
-        <LoadingScreen loadingText="Loading..." />
-      )}
-    </div>
+    <>
+      <Head>
+        <title>Just Code</title>
+        <meta
+          name="description"
+          content="Just code is a website with coding challenges to help you improve your knowledge of javascript. The coding challenges focus on practical problems faced in real world web development instead of drilling data structure and algorithms."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Just Code" />
+        <meta
+          property="og:description"
+          content="Just code is a website with coding challenges to help you improve your knowledge of javascript. The coding challenges focus on practical problems faced in real world web development instead of drilling data structure and algorithms."
+        />
+        <meta property="og:url" content="https://just-code.vercel.app/" />
+        <meta property="og:site_name" content="Just Code" />
+        <meta
+          property="og:image"
+          content="https://just-code.vercel.app/images/just-code-challenge-screen.png"
+        />
+      </Head>
+      <div className="container mx-auto">
+        {!session ? (
+          <div className="card mx-auto mt-16 max-w-lg bg-base-300 px-10 py-16 shadow-xl">
+            <h1 className="mb-4 text-center text-5xl font-bold">
+              <div className=" text-accent-content">Just Code</div>
+            </h1>
+            <p className="text-center font-light">
+              Straight forward javascript challenges to help you level up your
+              coding skills.
+            </p>
+            <div className="divider" />
+            <button
+              onClick={signInWithGithub}
+              className="btn-block btn mb-3 gap-2"
+            >
+              <BsGithub size={20} />
+              Sign In With Github
+            </button>
+            <button onClick={signInWithGoogle} className="btn-block btn gap-2">
+              <BsGoogle size={20} />
+              Sign In With Google
+            </button>
+          </div>
+        ) : (
+          <LoadingScreen loadingText="Loading..." />
+        )}
+      </div>
+    </>
   );
 };
 

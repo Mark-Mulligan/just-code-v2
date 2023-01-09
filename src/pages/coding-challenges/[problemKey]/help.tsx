@@ -4,6 +4,7 @@ import { useState } from 'react';
 // Next
 import type { NextPage, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 // Supabase
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -94,73 +95,98 @@ const Help: NextPage<IProps> = ({ codingChallengeData }) => {
   };
 
   return (
-    <div className="container mx-auto mt-16 max-w-3xl px-4 pt-4">
-      <h1 className=" mb-4 text-center text-4xl font-bold">
-        {codingChallengeData.title}
-      </h1>
-      <section className="mb-4">
-        <h2 className="mb-2 text-2xl font-bold">Problem Explanation</h2>
-        <p>{codingChallengeData.problemExplanation}</p>
-      </section>
-      <section className="mb-4">
-        <h2 className="mb-2 text-2xl font-bold">Hints</h2>
-        <ul>
-          {codingChallengeData.hints.map((hint) => {
-            return <li key={uuidv4()}>{hint}</li>;
-          })}
-        </ul>
-      </section>
-      <section>
-        <h2 className="mb-2 text-2xl font-bold">Solution</h2>
-        {showSolution ? (
-          <div className="mb-8">
-            <CodeMirror
-              theme={'dark'}
-              value={codingChallengeData.solutionCode}
-              height="auto"
-              editable={false}
-              extensions={[javascript({ jsx: true })]}
-            />
-          </div>
-        ) : (
-          <button className="btn-primary btn" onClick={handleShowSolution}>
-            Show Solution
-          </button>
-        )}
+    <>
+      <Head>
+        <title>Just Code - {codingChallengeData.title} help</title>
+        <meta
+          name="description"
+          content={codingChallengeData.problemExplanation}
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content={`Just Code - ${codingChallengeData.title}`}
+        />
+        <meta
+          property="og:description"
+          content={codingChallengeData.problemExplanation}
+        />
+        <meta
+          property="og:url"
+          content={`https://just-code.vercel.app/coding-challenges/`}
+        />
+        <meta property="og:site_name" content="Just Code" />
+      </Head>
+      <div className="container mx-auto mt-16 max-w-3xl px-4 pt-4">
+        <h1 className=" mb-4 text-center text-4xl font-bold">
+          {codingChallengeData.title}
+        </h1>
+        <section className="mb-4">
+          <h2 className="mb-2 text-2xl font-bold">Problem Explanation</h2>
+          <p>{codingChallengeData.problemExplanation}</p>
+        </section>
+        <section className="mb-4">
+          <h2 className="mb-2 text-2xl font-bold">Hints</h2>
+          <ul>
+            {codingChallengeData.hints.map((hint) => {
+              return <li key={uuidv4()}>{hint}</li>;
+            })}
+          </ul>
+        </section>
+        <section>
+          <h2 className="mb-2 text-2xl font-bold">Solution</h2>
+          {showSolution ? (
+            <div className="mb-8">
+              <CodeMirror
+                theme={'dark'}
+                value={codingChallengeData.solutionCode}
+                height="auto"
+                editable={false}
+                extensions={[javascript({ jsx: true })]}
+              />
+            </div>
+          ) : (
+            <button className="btn-primary btn" onClick={handleShowSolution}>
+              Show Solution
+            </button>
+          )}
 
-        {userSolutions.length > 0 && (
-          <>
-            <h2 className="mb-2 text-2xl font-bold">User Solutions</h2>
-            <ul>
-              {userSolutions.map((solution: UserSolution) => {
-                return (
-                  <li className="mb-8" key={solution.completed_at}>
-                    <h4 className="mb-1">
-                      Submitted:{' '}
-                      {format(new Date(solution.completed_at), 'MM/dd/yyyy')} at{' '}
-                      {format(new Date(solution.completed_at), 'h:mm:ss aa')}
-                    </h4>
-                    <CodeMirror
-                      theme={'dark'}
-                      value={solution.solution_code}
-                      height="auto"
-                      editable={false}
-                      extensions={[javascript({ jsx: true })]}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </>
-        )}
+          {userSolutions.length > 0 && (
+            <>
+              <h2 className="mb-2 text-2xl font-bold">User Solutions</h2>
+              <ul>
+                {userSolutions.map((solution: UserSolution) => {
+                  return (
+                    <li className="mb-8" key={solution.completed_at}>
+                      <h4 className="mb-1">
+                        Submitted:{' '}
+                        {format(new Date(solution.completed_at), 'MM/dd/yyyy')}{' '}
+                        at{' '}
+                        {format(new Date(solution.completed_at), 'h:mm:ss aa')}
+                      </h4>
+                      <CodeMirror
+                        theme={'dark'}
+                        value={solution.solution_code}
+                        height="auto"
+                        editable={false}
+                        extensions={[javascript({ jsx: true })]}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          )}
 
-        {userSolutions.length < userSolutionsCount && (
-          <button className="btn-primary btn" onClick={loadMoreSolutions}>
-            Load More Solutions
-          </button>
-        )}
-      </section>
-    </div>
+          {userSolutions.length < userSolutionsCount && (
+            <button className="btn-primary btn" onClick={loadMoreSolutions}>
+              Load More Solutions
+            </button>
+          )}
+        </section>
+      </div>
+    </>
   );
 };
 

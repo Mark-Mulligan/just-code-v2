@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 // Next
+import Head from 'next/head';
 import type { NextPage } from 'next';
 import type { GetServerSideProps } from 'next';
 
@@ -37,26 +38,47 @@ const CodingExercise: NextPage<IProps> = ({ codingChallengeData }) => {
   );
 
   return (
-    <div className="mt-[64px] flex h-[calc(100vh-4rem)]">
-      <CodingChallengeInfoPanel
-        userCode={userCode}
-        codingChallengeData={codingChallengeData}
-      />
-      <div
-        className="w-full overflow-auto pt-4"
-        style={{ background: '#282c34' }}
-      >
-        <CodeMirror
-          theme={'dark'}
-          value={userCode}
-          height="auto"
-          extensions={[javascript({ jsx: true })]}
-          onChange={(value) => {
-            setUserCode(value);
-          }}
+    <>
+      <Head>
+        <title>Just Code - {codingChallengeData.title}</title>
+        <meta name="description" content={codingChallengeData.description} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content={`Just Code - ${codingChallengeData.title}`}
         />
+        <meta
+          property="og:description"
+          content={codingChallengeData.description}
+        />
+        <meta
+          property="og:url"
+          content={`https://just-code.vercel.app/coding-challenges/`}
+        />
+        <meta property="og:site_name" content="Just Code" />
+      </Head>
+      <div className="mt-[64px] flex h-[calc(100vh-4rem)]">
+        <CodingChallengeInfoPanel
+          userCode={userCode}
+          codingChallengeData={codingChallengeData}
+        />
+        <div
+          className="w-full overflow-auto pt-4"
+          style={{ background: '#282c34' }}
+        >
+          <CodeMirror
+            theme={'dark'}
+            value={userCode}
+            height="auto"
+            extensions={[javascript({ jsx: true })]}
+            onChange={(value) => {
+              setUserCode(value);
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

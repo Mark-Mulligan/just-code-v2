@@ -1,6 +1,7 @@
 // Next
 import type { GetServerSideProps } from 'next';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 
 // React
 import React, { useState, useEffect } from 'react';
@@ -97,67 +98,91 @@ const Problems: NextPage<IProps> = ({
   ]);
 
   return (
-    <div className="container mx-auto px-2 pt-20">
-      <h1 className="mb-2 text-center text-3xl font-bold">Coding Challenges</h1>
-      <h6 className="mb-4 text-center">
-        {completedChallenges.length}/{codingChallengeOverviews.length} Completed
-      </h6>
-      <div className="mb-4 grid grid-cols-3 gap-x-4">
-        <label>
-          Search Challenges
-          <input
-            type="text"
-            placeholder="Search..."
-            onChange={handleChangeSearchChange}
-            value={challengeSearch}
-            className="input-bordered input mt-1 w-full"
-          />
-        </label>
+    <>
+      <Head>
+        <title>Just Code - Coding Challenges</title>
+        <meta
+          name="description"
+          content="Just code is a website with coding challenges to help you improve your knowledge of javascript. The coding challenges focus on practical problems faced in real world web development instead of drilling data structure and algorithms."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Just Code - Coding Challenges" />
+        <meta
+          property="og:description"
+          content="Just code is a website with coding challenges to help you improve your knowledge of javascript. The coding challenges focus on practical problems faced in real world web development instead of drilling data structure and algorithms."
+        />
+        <meta
+          property="og:url"
+          content="https://just-code.vercel.app/coding-challenges"
+        />
+        <meta property="og:site_name" content="Just Code" />
+      </Head>
+      <div className="container mx-auto px-2 pt-20">
+        <h1 className="mb-2 text-center text-3xl font-bold">
+          Coding Challenges
+        </h1>
+        <h6 className="mb-4 text-center">
+          {completedChallenges.length}/{codingChallengeOverviews.length}{' '}
+          Completed
+        </h6>
+        <div className="mb-4 grid grid-cols-3 gap-x-4">
+          <label>
+            Search Challenges
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={handleChangeSearchChange}
+              value={challengeSearch}
+              className="input-bordered input mt-1 w-full"
+            />
+          </label>
 
-        <label>
-          Difficulty
-          <select
-            className="select-bordered select mt-1 w-full"
-            onChange={handleDifficultyFilterChange}
-            value={difficultyFilter}
-          >
-            <option value="all">All</option>
-            <option value="1">Easy</option>
-            <option value="2">Medium</option>
-            <option value="3">Hard</option>
-          </select>
-        </label>
+          <label>
+            Difficulty
+            <select
+              className="select-bordered select mt-1 w-full"
+              onChange={handleDifficultyFilterChange}
+              value={difficultyFilter}
+            >
+              <option value="all">All</option>
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            </select>
+          </label>
 
-        <label>
-          Completion Status
-          <select
-            className="select-bordered select mt-1 w-full"
-            onChange={handleCompletionStatusFilterChange}
-            value={completionStatusFilter}
-          >
-            <option value="all">All</option>
-            <option value="notCompleted">Not Completed</option>
-            <option value="completed">Completed</option>
-          </select>
-        </label>
+          <label>
+            Completion Status
+            <select
+              className="select-bordered select mt-1 w-full"
+              onChange={handleCompletionStatusFilterChange}
+              value={completionStatusFilter}
+            >
+              <option value="all">All</option>
+              <option value="notCompleted">Not Completed</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+        </div>
+        <ul>
+          {filteredChallenges.map(
+            ({ challengeKey, title, description, difficulty, completed }) => {
+              return (
+                <CodingChallengeCard
+                  key={challengeKey}
+                  name={title}
+                  difficulty={difficulty}
+                  description={description}
+                  challengeKey={challengeKey}
+                  completed={completed}
+                />
+              );
+            }
+          )}
+        </ul>
       </div>
-      <ul>
-        {filteredChallenges.map(
-          ({ challengeKey, title, description, difficulty, completed }) => {
-            return (
-              <CodingChallengeCard
-                key={challengeKey}
-                name={title}
-                difficulty={difficulty}
-                description={description}
-                challengeKey={challengeKey}
-                completed={completed}
-              />
-            );
-          }
-        )}
-      </ul>
-    </div>
+    </>
   );
 };
 
