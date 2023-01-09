@@ -15,6 +15,12 @@ export type CodingChallengeData = {
   solutionCode: string;
 };
 
+export type CodingChallengeOverviewData = {
+  title: string;
+  description: string;
+  difficulty: DifficultyLevel;
+};
+
 export type TestResult = {
   test: string;
   passed: boolean;
@@ -43,6 +49,10 @@ export type CodingExerciseStaticPath = {
 
 export interface AllCodingChallengesData {
   [key: string]: CodingChallengeData;
+}
+
+export interface CodingChallengeList {
+  [key: string]: CodingChallengeOverviewData;
 }
 
 export interface UserSolution {

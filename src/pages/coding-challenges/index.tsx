@@ -13,10 +13,10 @@ import { codingChallengesData } from '../../../data/codingChallengeData';
 import CodingChallengeCard from '../../components/CodingChallengeCard';
 
 // Custom Types
-import type { AllCodingChallengesData } from '../../../types/customTypes';
+import type { CodingChallengeList } from '../../../types/customTypes';
 
 interface IProps {
-  codingChallengeOverviews: AllCodingChallengesData;
+  codingChallengeOverviews: CodingChallengeList;
   completedChallenges: string[];
   initialSession: Session;
   user: User;
@@ -85,11 +85,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
+  const codingChallengeOverviews: CodingChallengeList = {};
+  Object.entries(codingChallengesData).forEach(
+    ([challengeKey, challengeData]) => {
+      const { title, description, difficulty } = challengeData;
+      codingChallengeOverviews[challengeKey] = {
+        title,
+        description,
+        difficulty,
+      };
+    }
+  );
+
   return {
     props: {
       initialSession: session,
       user: session.user,
-      codingChallengeOverviews: codingChallengesData,
+      codingChallengeOverviews,
       completedChallenges,
     },
   };

@@ -37,6 +37,7 @@ import knightMovement from './challenges/knightMovement';
 import largestSum from './challenges/largestSum';
 import primeNumberCheck from './challenges/primeNumberCheck';
 import sortTheDates from './challenges/sortTheDates';
+import sumThePerimeter from './challenges/sumThePerimeter';
 import objectArrayUpdate from './challenges/objectArrayUpdate';
 import alphabetizeNames from './challenges/alphabetizeNames';
 import combineTwoArrays from './challenges/combineTwoArrays';
@@ -82,6 +83,7 @@ export const codingChallengesData: AllCodingChallengesData = {
   'largest-sum': largestSum,
   'prime-number-check': primeNumberCheck,
   'sort-the-dates': sortTheDates,
+  'sum-the-perimeter': sumThePerimeter,
   'object-array-update': objectArrayUpdate,
   'alphabetize-names': alphabetizeNames,
   'combine-two-arrays': combineTwoArrays,
