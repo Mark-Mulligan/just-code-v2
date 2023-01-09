@@ -33,6 +33,35 @@ const Problems: NextPage<IProps> = ({
         {completedChallenges.length}/
         {Object.keys(codingChallengeOverviews).length} Completed
       </h6>
+      <div className="mb-4 grid grid-cols-3 gap-x-4">
+        <label>
+          Search Challenges
+          <input
+            type="text"
+            placeholder="Search..."
+            className="input-bordered input mt-1 w-full"
+          />
+        </label>
+
+        <label>
+          Difficulty
+          <select className="select-bordered select mt-1 w-full">
+            <option>All</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </label>
+
+        <label>
+          Completion Status
+          <select className="select-bordered select mt-1 w-full">
+            <option>All</option>
+            <option>Not Completed</option>
+            <option>Completed</option>
+          </select>
+        </label>
+      </div>
       <ul>
         {Object.entries(codingChallengeOverviews).map(([key, value]) => {
           return (
