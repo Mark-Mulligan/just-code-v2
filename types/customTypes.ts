@@ -16,9 +16,11 @@ export type CodingChallengeData = {
 };
 
 export type CodingChallengeOverviewData = {
+  challengeKey: string;
   title: string;
   description: string;
   difficulty: DifficultyLevel;
+  completed: boolean;
 };
 
 export type TestResult = {
@@ -49,10 +51,6 @@ export type CodingExerciseStaticPath = {
 
 export interface AllCodingChallengesData {
   [key: string]: CodingChallengeData;
-}
-
-export interface CodingChallengeList {
-  [key: string]: CodingChallengeOverviewData;
 }
 
 export interface UserSolution {

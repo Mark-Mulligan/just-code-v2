@@ -4,7 +4,7 @@ import { generateTestScriptString } from '../utils';
 // Custom Types
 import { CodingChallengeData } from '../../types/customTypes';
 
-const sumThePerimeterSolution = `const sum = (num1, num2) => {
+const sumThePerimeterSolution = `const perimeterSum = (grid) => {
   let sum = 0;
 
   for (let row = 0; row < grid.length; row++) {
