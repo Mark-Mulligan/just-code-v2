@@ -1,4 +1,4 @@
-import { NextParsedUrlQuery } from 'next/dist/server/request-meta';
+import { type NextParsedUrlQuery } from 'next/dist/server/request-meta';
 
 export type DifficultyLevel = 1 | 2 | 3; // 1 Easy, 2 Medium, 3 Hard
 

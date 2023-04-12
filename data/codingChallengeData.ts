@@ -1,5 +1,5 @@
 // Custom Types
-import { AllCodingChallengesData } from '../types/customTypes';
+import { type AllCodingChallengesData } from '../types/customTypes';
 
 // Challenge Data
 // Easy
